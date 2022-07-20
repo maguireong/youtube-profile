@@ -5,9 +5,12 @@ import {
   FaRegCompass,
   FaSubscript,
   FaPersonBooth,
+  FaYoutube,
 } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Button } from "./Button";
+import { SearchInput } from "./SearchInput";
+import { Avatar } from "@mui/material";
 
 type TabType = {
   title: string;
@@ -74,5 +77,20 @@ function SidePanel(props: SidePanelProps) {
 }
 
 function TopBar() {
-  return <div></div>;
+  const [search, setSearch] = useState("");
+  return (
+    <div className="flex items-center bg-gray-900 py-2 justify-between w-[94vw] px-4">
+      <div className="flex items-center space-x-1 font-semibold text-white text-base ">
+        <FaYoutube className="text-5xl text-red-600 " /> Youtube
+      </div>
+      <SearchInput
+        className="text-white rounded w-96 bg-gray-700"
+        onChange={setSearch}
+        value={search}
+      />
+      <div>
+        <Avatar alt="Remy Sharp" src="/avatar/1.jpg" />
+      </div>
+    </div>
+  );
 }
