@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {
   FaHome,
   FaRegCompass,
@@ -11,37 +11,41 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { Button } from "./Button";
 import { SearchInput } from "./SearchInput";
 import { Avatar } from "@mui/material";
+import { useRouter } from "next/router";
+import { User } from "../model/User";
+import { getGoogleUser } from "../server/endpoints";
 
 type TabType = {
   title: string;
   icon: ReactNode;
+  link: string;
 };
 
 export function MainTemplate({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const pathname = router.pathname;
   const tabs = [
     {
       title: "Home",
       icon: <BsFillPersonFill className="text-white" />,
+      link: "/",
     },
     {
       title: "Explore",
       icon: <FaRegCompass className="text-white" />,
+      link: "/explore",
     },
     {
       title: "Subscriptions",
       icon: <FaSubscript className="text-white" />,
+      link: "/subscriptions",
     },
   ];
-
-  const [currentTab, setCurrentTab] = useState<TabType>(tabs[0]);
+  const currentTab = tabs.find((tab) => tab.link.includes(pathname));
   return (
-    <main className="flex ">
-      <SidePanel
-        tabs={tabs}
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-      />
-      <section className="flex bg-gray-800 flex-col">
+    <main className="flex">
+      <SidePanel tabs={tabs} currentTab={currentTab ?? tabs[0]} />
+      <section className="flex bg-gray-800 ml-28 flex-col">
         <TopBar />
         {children}
       </section>
@@ -52,17 +56,16 @@ export function MainTemplate({ children }: { children: ReactNode }) {
 type SidePanelProps = {
   tabs: TabType[];
   currentTab: TabType;
-  setCurrentTab: (tab: TabType) => void;
 };
 
 function SidePanel(props: SidePanelProps) {
-  const { tabs, currentTab, setCurrentTab } = props;
+  const { tabs, currentTab } = props;
   return (
-    <div className="flex flex-col bg-gray-900 w-28 h-screen justify-center">
+    <div className="flex flex-col bg-gray-900 w-28 fixed h-screen justify-center">
       {tabs.map((tab) => (
         <Button
           key={tab.title}
-          click={() => setCurrentTab(tab)}
+          link={tab.link}
           className={classNames(
             currentTab.title === tab.title ? "border-l-4 border-red-600" : "",
             "hover:bg-gray-800 hover:border-l-4 border-red-600",
@@ -79,6 +82,20 @@ function SidePanel(props: SidePanelProps) {
 
 function TopBar() {
   const [search, setSearch] = useState("");
+  const [user, setUser] = useState<User>();
+  const getUserData = async () => {
+    const data = await getGoogleUser();
+    setUser({
+      id: data.id,
+      email: data.email,
+      name: data.name,
+      picture: data.picture,
+    });
+  };
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <div className="flex items-center border-b-2 bg-gray-800 py-2 justify-between w-[94vw] px-4">
       <div className="flex items-center space-x-1 font-semibold text-white text-base ">
@@ -90,7 +107,7 @@ function TopBar() {
         value={search}
       />
       <div>
-        <Avatar alt="Remy Sharp" src="" />
+        <Avatar alt="Remy Sharp" src={user?.picture ?? ""} />
       </div>
     </div>
   );

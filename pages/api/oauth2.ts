@@ -4,10 +4,6 @@ import axios from "axios";
 import qs from "qs";
 import { setCookie } from "cookies-next";
 
-const CLIENT_ID = process.env["GOOGLE_CLIENT_ID"];
-const REDIRECT_URI = process.env["GOOGLE_REDIRECT_URI"];
-const CLIENT_SECRET = process.env["GOOGLE_CLIENT_SECRET"];
-
 type GoogleTokensResult = {
   access_token: string;
   expires_in: Number;
