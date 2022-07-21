@@ -10,7 +10,7 @@ type TabType = {
 
 type SidePanelProps = {
   tabs: TabType[];
-  currentTab: TabType;
+  currentTab?: TabType;
 };
 
 export function SidePanel(props: SidePanelProps) {
@@ -22,7 +22,7 @@ export function SidePanel(props: SidePanelProps) {
           key={tab.title}
           link={tab.link}
           className={classNames(
-            currentTab.title === tab.title ? "border-l-4 border-red-600" : "",
+            currentTab?.title === tab.title ? "border-l-4 border-red-600" : "",
             "hover:bg-gray-800 hover:border-l-4 border-red-600",
             "flex font-light text-white flex-col py-4 items-center"
           )}

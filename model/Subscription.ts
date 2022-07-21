@@ -6,3 +6,12 @@ export type Subscription = {
   thumbnail: string;
   subscriptAt: string;
 };
+
+export const initialData = {
+  id: "",
+  mostRecentIndex: 1,
+  description: "",
+  title: "",
+  thumbnail: "",
+  subscriptAt: "",
+};

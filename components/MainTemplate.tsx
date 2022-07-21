@@ -28,7 +28,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
   const currentTab = tabs.find((tab) => tab.link.includes(pathname));
   return (
     <main className="flex bg-gray-800">
-      <SidePanel tabs={tabs} currentTab={currentTab ?? tabs[0]} />
+      <SidePanel tabs={tabs} currentTab={currentTab} />
       {children}
     </main>
   );
