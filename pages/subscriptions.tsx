@@ -3,7 +3,6 @@ import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
 import { Subscription } from "../model/Subscription";
 import { getUserSubscriptions } from "../server/endpoints";
-import Image from "next/image";
 
 const MAX_RESULT_PER_PAGE = 50;
 

@@ -1,5 +1,4 @@
 import { Avatar } from "@mui/material";
-import Cookies from "js-cookie";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../components";
@@ -29,7 +28,7 @@ export default function Home() {
     <>
       <Head>
         <title>Youtube Profile</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/youtube.ico" />
       </Head>
 
       <MainTemplate>
@@ -41,12 +40,6 @@ export default function Home() {
             link={link}
           >
             Connect to google
-          </Button>
-          <Button
-            className="rounded-full bg-white flex items-center p-2"
-            click={getUserData}
-          >
-            Get user data
           </Button>
         </div>
       </MainTemplate>

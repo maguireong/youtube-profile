@@ -97,7 +97,7 @@ function TopBar() {
   }, []);
 
   return (
-    <div className="flex items-center border-b-2 bg-gray-800 py-2 justify-between w-[94vw] px-4">
+    <div className="flex items-center border-b-2 bg-gray-800 py-2 px-4 justify-between w-[93vw] ">
       <div className="flex items-center space-x-1 font-semibold text-white text-base ">
         <FaYoutube className="text-5xl text-red-600" /> Youtube
       </div>
@@ -106,9 +106,7 @@ function TopBar() {
         onChange={setSearch}
         value={search}
       />
-      <div>
-        <Avatar alt="Remy Sharp" src={user?.picture ?? ""} />
-      </div>
+      <Avatar alt="Remy Sharp" src={user?.picture ?? ""} />
     </div>
   );
 }
