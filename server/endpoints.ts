@@ -44,6 +44,7 @@ type GoogleSubscriptionResult = {
         };
       };
       title: string;
+      publishedAt: string;
     };
   }[];
   pageInfo: {
