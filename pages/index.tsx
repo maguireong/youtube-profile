@@ -1,5 +1,4 @@
 import { Avatar } from "@mui/material";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
@@ -26,27 +25,20 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Youtube Profile</title>
-        <link rel="icon" href="/youtube.ico" />
-      </Head>
-
-      <MainTemplate>
-        <section className="flex  ml-28 flex-col">
-          <TopBar />
-          <div className="h-screen flex items-center justify-center ">
-            <Avatar alt="A" src={user?.picture ?? ""} />
-            <h1 className="text-4xl">{user?.name ?? "Maguire Ong"}</h1>
-            <Button
-              className="rounded-full bg-white flex items-center p-2"
-              link={link}
-            >
-              Connect to google
-            </Button>
-          </div>
-        </section>
-      </MainTemplate>
-    </>
+    <MainTemplate>
+      <section className="flex  ml-28 flex-col">
+        <TopBar />
+        <div className="h-screen flex items-center justify-center ">
+          <Avatar alt="A" src={user?.picture ?? ""} />
+          <h1 className="text-4xl">{user?.name ?? "Maguire Ong"}</h1>
+          <Button
+            className="rounded-full bg-white flex items-center p-2"
+            link={link}
+          >
+            Connect to google
+          </Button>
+        </div>
+      </section>
+    </MainTemplate>
   );
 }

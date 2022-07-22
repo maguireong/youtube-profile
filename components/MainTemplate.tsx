@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
-import { FaRegCompass, FaSubscript } from "react-icons/fa";
+import { FaRegCompass, FaThumbsUp } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
+import { MdOutlineVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import { SidePanel } from "./SidePanel";
-import { TopBar } from "./Topbar";
+import Head from "next/head";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -15,21 +16,37 @@ export function MainTemplate({ children }: { children: ReactNode }) {
       link: "/",
     },
     {
-      title: "Explore",
-      icon: <FaRegCompass className="text-white" />,
-      link: "/explore",
+      title: "Likes",
+      icon: <FaThumbsUp className="text-white" />,
+      link: "/likes",
     },
     {
       title: "Subscriptions",
-      icon: <FaSubscript className="text-white" />,
+      icon: <MdSubscriptions className="text-white" />,
       link: "/subscriptions",
+    },
+    {
+      title: "Activities",
+      icon: <FaRegCompass className="text-white" />,
+      link: "/activities",
+    },
+    {
+      title: "Playlists",
+      icon: <MdOutlineVideoLibrary className="text-white" />,
+      link: "/playlists",
     },
   ];
   const currentTab = tabs.find((tab) => tab.link.includes(pathname));
   return (
-    <main className="flex bg-gray-800">
-      <SidePanel tabs={tabs} currentTab={currentTab} />
-      {children}
-    </main>
+    <>
+      <Head>
+        <title>Youtube Profile</title>
+        <link rel="icon" href="/youtube.ico" />
+      </Head>
+      <main className="flex bg-gray-800">
+        <SidePanel tabs={tabs} currentTab={currentTab} />
+        {children}
+      </main>
+    </>
   );
 }

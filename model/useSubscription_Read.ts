@@ -14,6 +14,7 @@ export async function useSubscription_Read({
   const data = await getUserSubscriptions();
   const transformData = data.items.map((data, i) => ({
     id: data.id,
+    channelId: data.snippet.channelId,
     mostRecentIndex: i,
     description: data.snippet.description,
     title: data.snippet.title,
