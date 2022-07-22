@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { FaYoutube } from "react-icons/fa";
 import { User } from "../model/User";
-import { getGoogleUser } from "../server/endpoints";
+import { getGoogleUser } from "../server/getGoogleUrl";
 import { SearchInput } from "./SearchInput";
 
 type TopBarProps = {

@@ -1,18 +1,16 @@
 import { Avatar } from "@mui/material";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { FaYoutube } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
 import { TopBar } from "../components/Topbar";
 import { User } from "../model/User";
-import { getGoogleUser } from "../server/endpoints";
-import getGoogleOAuthURL from "../server/getGoogleUrl";
+import { getGoogleUser, refreshAccessToken } from "../server/getGoogleUrl";
 import { LandingPage } from "../views/LandingPage";
 
 export default function Home() {
   const accessToken = Cookies.get("accessToken");
+  const refreshToken = Cookies.get("refreshToken");
 
   const [user, setUser] = useState<User>();
   const getUserData = async () => {
@@ -26,6 +24,7 @@ export default function Home() {
   };
   useEffect(() => {
     if (accessToken) getUserData();
+    else if (refreshToken) refreshAccessToken();
   }, []);
 
   return accessToken ? (

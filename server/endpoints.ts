@@ -1,37 +1,9 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 
-type GoogleUserResult = {
-  id: string;
-  email: string;
-  verified_email: boolean;
-  name: string;
-  given_name: string;
-  family_name: string;
-  picture: string;
-  locale: string;
-};
-
 const access_token = getCookie("accessToken");
-const id_token = getCookie("idToken");
-const YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3";
 
-export async function getGoogleUser(): Promise<GoogleUserResult> {
-  try {
-    const { data } = await axios.get<GoogleUserResult>(
-      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,
-      {
-        headers: {
-          Authorization: `Bearer ${id_token}`,
-        },
-      }
-    );
-    return data;
-  } catch (error: any) {
-    console.log(error);
-    throw new Error(error.message);
-  }
-}
+const YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 type SubscriptionResult = {
   items: {
