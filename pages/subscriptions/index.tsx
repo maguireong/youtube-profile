@@ -24,7 +24,6 @@ export default function Subscriptions() {
     <MainTemplate>
       <section className="flex ml-28 flex-col">
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <Button></Button>
         <section className="flex flex-wrap m-8 gap-4">
           {subs
             ?.filter((sub) => sub.title.includes(searchTerm))
@@ -34,7 +33,7 @@ export default function Subscriptions() {
                 link={`/subscriptions/${encodeURIComponent(id)}`}
                 className="flex hover:bg-opacity-70 items-center m-1 w-48 rounded flex-col gap-y-2"
               >
-                <img src={thumbnail} height="60%" width="60%" />
+                <img src={thumbnail.url} height="60%" width="60%" />
                 <div className="font-semibold text-lg text-gray-400">
                   {title}
                 </div>

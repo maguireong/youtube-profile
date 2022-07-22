@@ -4,15 +4,10 @@ export type Subscription = {
   mostRecentIndex: number;
   description: string;
   title: string;
-  thumbnail: string;
+  thumbnail: {
+    url: string;
+    height: string;
+    width: string;
+  };
   subscriptAt: string;
-};
-
-export const initialData = {
-  id: "",
-  mostRecentIndex: 1,
-  description: "",
-  title: "",
-  thumbnail: "",
-  subscriptAt: "",
 };

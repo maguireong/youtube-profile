@@ -1,5 +1,5 @@
 import { getUserSubscriptions } from "../server/endpoints";
-import { initialData, Subscription } from "./Subscription";
+import { Subscription } from "./Subscription";
 
 export async function useSubscription_Read({
   id,
@@ -18,7 +18,11 @@ export async function useSubscription_Read({
     mostRecentIndex: i,
     description: data.snippet.description,
     title: data.snippet.title,
-    thumbnail: data.snippet.thumbnails.default.url,
+    thumbnail: {
+      url: data.snippet.thumbnails.standard.url,
+      height: data.snippet.thumbnails.standard.height,
+      width: data.snippet.thumbnails.standard.width,
+    },
     subscriptAt: data.snippet.publishedAt,
   }));
 

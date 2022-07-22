@@ -49,14 +49,16 @@ export function MainTemplate({ children }: { children: ReactNode }) {
 
       <main className="flex bg-youtubeBlack">
         <SidePanel tabs={tabs} currentTab={currentTab} />
-        {showPageTransitionLoader ? (
-          <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
-            <CircularProgress className="text-youtubeRed" color="secondary" />
-            <div>Loading</div>
-          </div>
-        ) : (
-          children
-        )}
+        <div className="ml-28">
+          {showPageTransitionLoader ? (
+            <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
+              <CircularProgress className="text-youtubeRed" color="secondary" />
+              <div>Loading</div>
+            </div>
+          ) : (
+            children
+          )}
+        </div>
       </main>
     </>
   );
