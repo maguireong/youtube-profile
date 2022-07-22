@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie, setCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 
 export default function getGoogleOAuthURL() {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -81,5 +81,13 @@ export async function refreshAccessToken() {
   setCookie("idToken", refreshedIdToken, { maxAge: 9000 });
   setCookie("accessToken", refreshedAccessToken, { maxAge: 9000 });
 
+  return;
+}
+
+export async function logout() {
+  deleteCookie("idToken");
+  deleteCookie("accessToken");
+  deleteCookie("refreshToken");
+  window.location.reload();
   return;
 }

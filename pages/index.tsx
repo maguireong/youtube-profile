@@ -5,7 +5,11 @@ import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
 import { TopBar } from "../components/Topbar";
 import { User } from "../model/User";
-import { getGoogleUser, refreshAccessToken } from "../server/getGoogleUrl";
+import {
+  getGoogleUser,
+  logout,
+  refreshAccessToken,
+} from "../server/getGoogleUrl";
 import { LandingPage } from "../views/LandingPage";
 
 export default function Home() {
@@ -34,6 +38,7 @@ export default function Home() {
         <div className="h-screen flex items-center justify-center ">
           <Avatar alt="A" src={user?.picture ?? ""} />
           <h1 className="text-4xl">{user?.name ?? "Maguire Ong"}</h1>
+          <Button click={() => logout()}>Logout</Button>
         </div>
       </section>
     </MainTemplate>
