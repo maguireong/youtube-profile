@@ -1,14 +1,18 @@
 import { Avatar } from "@mui/material";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { FaYoutube } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
 import { TopBar } from "../components/Topbar";
 import { User } from "../model/User";
 import { getGoogleUser } from "../server/endpoints";
 import getGoogleOAuthURL from "../server/getGoogleUrl";
+import { LandingPage } from "../views/LandingPage";
 
 export default function Home() {
-  const link = getGoogleOAuthURL();
+  const accessToken = Cookies.get("accessToken");
 
   const [user, setUser] = useState<User>();
   const getUserData = async () => {
@@ -21,24 +25,20 @@ export default function Home() {
     });
   };
   useEffect(() => {
-    getUserData();
+    if (accessToken) getUserData();
   }, []);
 
-  return (
+  return accessToken ? (
     <MainTemplate>
       <section className="flex  ml-28 flex-col">
         <TopBar />
         <div className="h-screen flex items-center justify-center ">
           <Avatar alt="A" src={user?.picture ?? ""} />
           <h1 className="text-4xl">{user?.name ?? "Maguire Ong"}</h1>
-          <Button
-            className="rounded-full bg-white flex items-center p-2"
-            link={link}
-          >
-            Connect to google
-          </Button>
         </div>
       </section>
     </MainTemplate>
+  ) : (
+    <LandingPage />
   );
 }
