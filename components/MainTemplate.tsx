@@ -5,6 +5,8 @@ import { MdOutlineVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import { SidePanel } from "./SidePanel";
 import Head from "next/head";
+import { useShowPageTransitionLoader } from "../pageTransitions";
+import { CircularProgress } from "@mui/material";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -37,15 +39,24 @@ export function MainTemplate({ children }: { children: ReactNode }) {
     },
   ];
   const currentTab = tabs.find((tab) => tab.link.includes(pathname));
+  const showPageTransitionLoader = useShowPageTransitionLoader();
   return (
     <>
       <Head>
         <title>Youtube Profile</title>
         <link rel="icon" href="/youtube.ico" />
       </Head>
+
       <main className="flex bg-gray-800">
         <SidePanel tabs={tabs} currentTab={currentTab} />
-        {children}
+        {showPageTransitionLoader ? (
+          <div className="flex space-x-2 text-purple-400 h-screen w-full items-center justify-center">
+            <CircularProgress color="secondary" />
+            <div>Loading</div>
+          </div>
+        ) : (
+          children
+        )}
       </main>
     </>
   );
