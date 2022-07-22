@@ -19,9 +19,9 @@ export async function useSubscription_Read({
     description: data.snippet.description,
     title: data.snippet.title,
     thumbnail: {
-      url: data.snippet.thumbnails.standard.url,
-      height: data.snippet.thumbnails.standard.height,
-      width: data.snippet.thumbnails.standard.width,
+      url: data.snippet.thumbnails.default.url,
+      height: data.snippet.thumbnails.default.height,
+      width: data.snippet.thumbnails.default.width,
     },
     subscriptAt: data.snippet.publishedAt,
   }));

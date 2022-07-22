@@ -18,7 +18,7 @@ export function SidePanel(props: SidePanelProps) {
   const { tabs, currentTab } = props;
   const router = useRouter();
   return (
-    <div className="flex flex-col bg-gray-900 w-28 fixed h-screen justify-center">
+    <div className="flex flex-col bg-black fixed h-screen justify-center">
       {tabs.map((tab) => (
         <Button
           key={tab.title}
@@ -34,7 +34,7 @@ export function SidePanel(props: SidePanelProps) {
           className={classNames(
             currentTab?.title === tab.title ? "border-l-4 border-red-600" : "",
             "hover:bg-gray-800 hover:border-l-4 border-red-600",
-            "flex font-light text-white flex-col py-4 items-center"
+            "flex font-light text-white flex-col p-4  items-center"
           )}
         >
           <span className="text-2xl font-light">{tab.icon}</span>

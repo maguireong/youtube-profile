@@ -12,7 +12,12 @@ type SubscriptionResult = {
       channelId: string;
       description: string;
       thumbnails: {
-        standard: {
+        default: {
+          url: string;
+          height: string;
+          width: string;
+        };
+        high: {
           url: string;
           height: string;
           width: string;
