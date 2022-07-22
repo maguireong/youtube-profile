@@ -47,7 +47,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
         <link rel="icon" href="/youtube.ico" />
       </Head>
 
-      <main className=" bg-youtubeBlack">
+      <main className="-mb-8 bg-youtubeBlack">
         <SidePanel tabs={tabs} currentTab={currentTab} />
 
         {showPageTransitionLoader ? (

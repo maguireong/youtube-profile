@@ -22,7 +22,7 @@ export default function Subscriptions() {
 
   return (
     <MainTemplate>
-      <section className=" ml-28 h-full">
+      <section className="ml-28 h-screen">
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <div>
           <h1 className="text-4xl ml-12 mt-12 text-white">

@@ -20,7 +20,7 @@ export default function Likes() {
   }, []);
   return (
     <MainTemplate>
-      <main className="flex ml-28 flex-col h-screen">
+      <main className="ml-28 h-screen">
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <h1 className="text-4xl ml-12 mt-12 text-white">Your Likes</h1>
 
