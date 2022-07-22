@@ -29,12 +29,13 @@ export function TopBar({
   }, []);
 
   return (
-    <div className="flex items-center border-b-2 bg-gray-800 py-2 px-4 justify-between w-[93vw] ">
-      <div className="flex items-center space-x-1 font-semibold text-white text-base ">
-        <FaYoutube className="text-5xl text-red-600" /> Youtube
+    <div className="flex items-center border-b-2 bg-youtubeBlack py-2 px-4 justify-between w-[93vw] ">
+      <div className="flex items-center space-x-2 font-semibold text-white text-base ">
+        <FaYoutube className="text-5xl text-youtubeRed" />
+        <span>Youtube</span>
       </div>
       <SearchInput
-        className="text-white rounded w-96 bg-gray-700"
+        className="text-white rounded w-96 bg-gray-600"
         onChange={setSearchTerm}
         value={searchTerm}
       />

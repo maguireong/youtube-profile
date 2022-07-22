@@ -47,11 +47,11 @@ export function MainTemplate({ children }: { children: ReactNode }) {
         <link rel="icon" href="/youtube.ico" />
       </Head>
 
-      <main className="flex bg-gray-800">
+      <main className="flex bg-youtubeBlack">
         <SidePanel tabs={tabs} currentTab={currentTab} />
         {showPageTransitionLoader ? (
-          <div className="flex space-x-2 text-purple-400 h-screen w-full items-center justify-center">
-            <CircularProgress color="secondary" />
+          <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
+            <CircularProgress className="text-youtubeRed" color="secondary" />
             <div>Loading</div>
           </div>
         ) : (
