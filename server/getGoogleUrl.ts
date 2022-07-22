@@ -2,11 +2,14 @@ import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 
 export default function getGoogleOAuthURL() {
+  const GOOGLE_CLIENT_ID = process.env["GOOGLE_CLIENT_ID"];
+  const GOOGLE_REDIRECT_URI = process.env["GOOGLE_REDIRECT_URI"];
+
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
 
   const options = {
-    redirect_uri: process.env.GOOGLE_REDIRECT_URI as string,
-    client_id: process.env.GOOGLE_CLIENT_ID as string,
+    redirect_uri: GOOGLE_REDIRECT_URI ?? "",
+    client_id: GOOGLE_CLIENT_ID ?? "",
     access_type: "offline",
     response_type: "code",
     prompt: "consent",
