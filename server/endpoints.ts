@@ -120,7 +120,7 @@ export async function getVideoLikes() {
         params: statsParams,
       }
     );
-    console.log(videos, videoStatistics);
+
     const combined = videos.items.map((video) => {
       const [videoStat] = videoStatistics.items.filter(
         (stat) => stat.id === video.id

@@ -9,11 +9,9 @@ import { TopBar } from "../components/Topbar";
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentCount, setCurrentCount] = useState(0);
   const getLikes = async () => {
     const [transformData, totalResults] = await useVideo_Read({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
-    setCurrentCount(totalResults);
   };
   useEffect(() => {
     getLikes();
