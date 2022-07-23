@@ -14,7 +14,7 @@ export function LandingPage() {
         link={link}
       >
         <FcGoogle size="25px" />
-        <div className="font-medium text-white"> Continue with Google</div>
+        <div className="font-medium text-white">Continue with Google</div>
       </Button>
     </main>
   );

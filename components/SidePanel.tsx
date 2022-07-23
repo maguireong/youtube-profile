@@ -17,24 +17,26 @@ type SidePanelProps = {
 export function SidePanel(props: SidePanelProps) {
   const { tabs, currentTab } = props;
   const router = useRouter();
+  const goToTab = (link: string) =>
+    router.push(
+      {
+        pathname: link,
+      },
+      undefined,
+      { shallow: true }
+    );
+
   return (
     <div className="flex flex-col bg-black fixed h-screen justify-center">
       {tabs.map((tab) => (
         <Button
           key={tab.title}
-          click={() =>
-            router.push(
-              {
-                pathname: tab.link,
-              },
-              undefined,
-              { shallow: true }
-            )
-          }
+          click={() => goToTab(tab.link)}
           className={classNames(
-            currentTab?.title === tab.title ? "border-l-4 border-red-600" : "",
-            "hover:bg-gray-800 hover:border-l-4 border-red-600",
-            "flex font-light text-white flex-col p-4  items-center"
+            currentTab?.title === tab.title && "border-red-600",
+            currentTab?.title !== tab.title && "border-black",
+            "hover:bg-gray-800 hover:border-red-600",
+            "flex font-light text-white flex-col  border-l-4 p-4 items-center"
           )}
         >
           <span className="text-2xl font-light">{tab.icon}</span>

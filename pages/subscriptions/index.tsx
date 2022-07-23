@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../../components";
 import { Button } from "../../components/Button";
@@ -22,7 +23,7 @@ export default function Subscriptions() {
 
   return (
     <MainTemplate>
-      <section className="ml-28 h-screen">
+      <section className={classNames("ml-28", searchTerm && "h-screen")}>
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <div>
           <h1 className="text-4xl ml-12 mt-12 text-white">

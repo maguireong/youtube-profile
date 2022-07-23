@@ -5,6 +5,7 @@ import { MainTemplate } from "../components";
 import { Video } from "../model/Video";
 import { useVideo_Read } from "../model/useVideo_Read";
 import { TopBar } from "../components/Topbar";
+import classNames from "classnames";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
@@ -18,7 +19,7 @@ export default function Likes() {
   }, []);
   return (
     <MainTemplate>
-      <main className="ml-28 h-screen">
+      <main className={classNames("ml-28", searchTerm && "h-screen")}>
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <h1 className="text-4xl ml-12 mt-12 text-white">Your Likes</h1>
 

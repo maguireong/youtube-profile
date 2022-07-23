@@ -90,16 +90,24 @@ function UserProfile({ user, videos }: { user?: User; videos?: Video[] }) {
 
 function BasicInfo({ videos }: { videos?: Video[] }) {
   return (
-    <section className="my-12">
-      <div className="flex justify-center space-x-48 ">
-        <div className="text-white space-y-4">
-          <h1 className="text-2xl font-semibold">Likes</h1>
+    <section className="my-12 mx-12">
+      <div className="flex justify-center space-x-24">
+        <div className="text-white flex  flex-col space-y-4">
+          <h1 className="flex justify-between items-center">
+            <div className="text-2xl font-semibold">Likes</div>
+            <Button
+              text="SEE MORE"
+              link="/likes"
+              className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
+            />
+          </h1>
+
           <div className="flex flex-col space-y-4">
             {videos?.slice(0, 5).map((video) => (
               <Button
                 link="/likes"
                 key={video.id}
-                className="text-wrap w-96 space-y-2"
+                className="text-wrap space-y-2"
               >
                 <img
                   src={video.thumbnail.url}
@@ -115,14 +123,22 @@ function BasicInfo({ videos }: { videos?: Video[] }) {
             ))}
           </div>
         </div>
-        <div className="text-white space-y-4">
-          <h1 className="text-2xl font-semibold">Likes</h1>
+        <div className="text-white flex  flex-col space-y-4">
+          <h1 className="flex justify-between items-center">
+            <div className="text-2xl font-semibold">Likes</div>
+            <Button
+              text="SEE MORE"
+              link="/likes"
+              className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
+            />
+          </h1>
+
           <div className="flex flex-col space-y-4">
             {videos?.slice(0, 5).map((video) => (
               <Button
                 link="/likes"
                 key={video.id}
-                className="text-wrap w-96 space-y-2"
+                className="text-wrap space-y-2"
               >
                 <img
                   src={video.thumbnail.url}
