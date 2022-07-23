@@ -100,13 +100,22 @@ export async function getVideoLikes() {
       myRating: "like",
       maxResults: MAX_RESULTS,
     };
-    const { data: videos } = await axios.get<LikeResult>(
+    const { data: likes } = await axios.get<LikeResult>(
       `${YOUTUBE_BASE_URL}/videos`,
       {
         params,
       }
     );
+    return likes;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
 
+export async function getVideoStatistics() {
+  const MAX_RESULTS = 50;
+  try {
     const statsParams = {
       part: "statistics",
       mine: true,
@@ -121,14 +130,29 @@ export async function getVideoLikes() {
       }
     );
 
-    const combined = videos.items.map((video) => {
+    return videoStatistics;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
+
+export async function getVideos() {
+  const MAX_RESULTS = 50;
+  try {
+    const [videoLikes, videoStatistics] = await Promise.all([
+      getVideoLikes(),
+      getVideoStatistics(),
+    ]);
+
+    const combined = videoLikes.items.map((video) => {
       const [videoStat] = videoStatistics.items.filter(
         (stat) => stat.id === video.id
       );
       return { ...video, statistics: videoStat.statistics };
     });
 
-    return [combined];
+    return combined;
   } catch (error: any) {
     console.log(error);
     throw new Error(error.message);

@@ -1,4 +1,4 @@
-import { getVideoLikes } from "../server/endpoints";
+import { getVideoLikes, getVideos } from "../server/endpoints";
 import { Video } from "./Video";
 
 export async function useVideo_Read({
@@ -8,7 +8,7 @@ export async function useVideo_Read({
 }): Promise<
   [transformData: Video | Video[] | "loading", totalResults: number]
 > {
-  const [videos] = await getVideoLikes();
+  const videos = await getVideos();
   const transformData = videos.map((data, i) => ({
     id: data?.id,
     channelId: data?.snippet.channelId,
