@@ -158,3 +158,95 @@ export async function getVideos() {
     throw new Error(error.message);
   }
 }
+
+type PlaylistIdResults = {
+  items: {
+    id: string;
+  }[];
+};
+
+export async function getPlaylistIds() {
+  const MAX_RESULTS = 50;
+  try {
+    const statsParams = {
+      part: "snippet",
+      mine: true,
+      access_token,
+      maxResults: MAX_RESULTS,
+    };
+    const { data } = await axios.get<PlaylistIdResults>(
+      `${YOUTUBE_BASE_URL}/playlists`,
+      {
+        params: statsParams,
+      }
+    );
+
+    return data;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
+
+type PlaylistItemsResults = {
+  items: {
+    id: string;
+    snippet: {
+      channelId: string;
+      channelTitle: string; // personal
+      description: string;
+      title: string;
+      publishedAt: string;
+      videoOwnerChannelTitle: string; // viewing user
+      thumbnails: {
+        high: {
+          url: string;
+          height: string;
+          width: string;
+        };
+      };
+    };
+  }[];
+  pageInfo: {
+    totalResults: number;
+  };
+};
+
+export async function getPlaylistItems(playlistId: string) {
+  const MAX_RESULTS = 50;
+  try {
+    const statsParams = {
+      part: "snippet",
+      mine: true,
+      access_token,
+      maxResults: MAX_RESULTS,
+      playlistId,
+    };
+    // retrieve videoId for the search api
+    const { data } = await axios.get<PlaylistItemsResults>(
+      `${YOUTUBE_BASE_URL}/playlistItems`,
+      {
+        params: statsParams,
+      }
+    );
+
+    return data;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
+
+export async function getPlaylists() {
+  try {
+    const playlistIds = await getPlaylistIds();
+    const playlists = await Promise.all(
+      playlistIds.items.map(({ id }) => getPlaylistItems(id))
+    );
+
+    return playlists;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
