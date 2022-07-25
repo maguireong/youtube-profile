@@ -11,7 +11,7 @@ export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
   const getLikes = async () => {
-    const [transformData, totalResults] = await useVideo_Read({});
+    const transformData = await useVideo_Read({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
   };
   useEffect(() => {

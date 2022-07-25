@@ -30,7 +30,7 @@ export default function Home() {
     });
   };
   const getLikes = async () => {
-    const [transformData, _] = await useVideo_Read({});
+    const transformData = await useVideo_Read({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
   };
   useEffect(() => {
@@ -90,11 +90,11 @@ function UserProfile({ user, videos }: { user?: User; videos?: Video[] }) {
 
 function BasicInfo({ videos }: { videos?: Video[] }) {
   return (
-    <section className="my-12 mx-12">
+    <section className="m-12">
       <div className="flex justify-center space-x-24">
         <div className="text-white flex  flex-col space-y-4">
           <h1 className="flex justify-between items-center">
-            <div className="text-2xl font-semibold">Likes</div>
+            <div className="text-2xl font-semibold">Top Likes</div>
             <Button
               text="SEE MORE"
               link="/likes"

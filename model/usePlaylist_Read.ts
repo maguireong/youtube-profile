@@ -2,11 +2,11 @@ import { getPlaylists } from "../server/endpoints";
 import { Playlist } from "./Playlist";
 import { Video } from "./Video";
 
-export async function usePlaylist_Read(): Promise<Playlist[] | "loading"> {
+export async function usePlaylist_Read(): Promise<Playlist[]> {
   const playlists = await getPlaylists();
   const transformData = playlists.map((playlist, i) => {
     const videos: Omit<Video, "statistics">[] = playlist.items.map((video) => ({
-      id: video.id,
+      id: video.snippet.resourceId.videoId,
       channelId: video.snippet.channelId,
       mostRecentIndex: i,
       creatorName: video.snippet.videoOwnerChannelTitle,
@@ -18,6 +18,7 @@ export async function usePlaylist_Read(): Promise<Playlist[] | "loading"> {
         width: video.snippet.thumbnails.high?.width,
       },
       publishedAt: video.snippet.publishedAt,
+      playlistId: playlist.playlistId,
     }));
     return videos;
   });

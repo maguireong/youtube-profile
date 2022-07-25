@@ -5,9 +5,7 @@ export async function useVideo_Read({
   id,
 }: {
   id?: string;
-}): Promise<
-  [transformData: Video | Video[] | "loading", totalResults: number]
-> {
+}): Promise<Video | Video[] | "loading"> {
   const videos = await getVideos();
   const transformData = videos.map((data, i) => ({
     id: data?.id,
@@ -28,18 +26,15 @@ export async function useVideo_Read({
       commentCount: data?.statistics.commentCount,
     },
     publishedAt: data?.snippet.publishedAt,
+    playlistId: "",
   }));
-
-  // const totalResults = data.pageInfo.totalResults;
-  const totalResults = 47;
 
   if (id) {
     const transformedDetaildata =
       transformData.find((data) => data.id === id) ?? "loading";
 
-    return [transformedDetaildata, totalResults];
+    return transformedDetaildata;
   }
-  const likedata = transformData;
 
-  return [likedata, totalResults];
+  return transformData;
 }

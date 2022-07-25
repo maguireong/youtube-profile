@@ -205,6 +205,9 @@ type PlaylistItemsResults = {
           width: string;
         };
       };
+      resourceId: {
+        videoId: string;
+      };
     };
   }[];
   pageInfo: {
@@ -244,7 +247,11 @@ export async function getPlaylists() {
       playlistIds.items.map(({ id }) => getPlaylistItems(id))
     );
 
-    return playlists;
+    const playlistsWithIds = playlists.map((playlist, i) => {
+      return { playlistId: playlistIds.items[i].id, ...playlist };
+    });
+
+    return playlistsWithIds;
   } catch (error: any) {
     console.log(error);
     throw new Error(error.message);

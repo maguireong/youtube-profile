@@ -17,4 +17,5 @@ export type Video = {
     height: string;
     width: string;
   };
+  playlistId: string;
 };
