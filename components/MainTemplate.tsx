@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { FaRegCompass, FaThumbsUp } from "react-icons/fa";
+import { FaCompass, FaThumbsUp } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
-import { MdOutlineVideoLibrary, MdSubscriptions } from "react-icons/md";
+import { MdVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import { SidePanel } from "./SidePanel";
 import Head from "next/head";
@@ -14,27 +14,27 @@ export function MainTemplate({ children }: { children: ReactNode }) {
   const tabs = [
     {
       title: "Home",
-      icon: <BsFillPersonFill className="text-white" />,
+      icon: <BsFillPersonFill />,
       link: "/",
     },
     {
       title: "Likes",
-      icon: <FaThumbsUp className="text-white" />,
+      icon: <FaThumbsUp />,
       link: "/likes",
     },
     {
       title: "Subscriptions",
-      icon: <MdSubscriptions className="text-white" />,
+      icon: <MdSubscriptions />,
       link: "/subscriptions",
     },
     {
       title: "Explore",
-      icon: <FaRegCompass className="text-white" />,
+      icon: <FaCompass />,
       link: "/explore",
     },
     {
       title: "Playlists",
-      icon: <MdOutlineVideoLibrary className="text-white" />,
+      icon: <MdVideoLibrary />,
       link: "/playlists",
     },
   ];
@@ -43,7 +43,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
-        <title>Youtube Profile</title>
+        <title>{currentTab?.title} - Youtube Profile</title>
         <link rel="icon" href="/youtube.ico" />
       </Head>
 
