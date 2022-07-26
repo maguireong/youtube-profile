@@ -7,7 +7,6 @@ export async function usePopularVideo_Read({
   id?: string;
 }): Promise<PopularVideo | PopularVideo[] | "loading"> {
   const videos = await getPopularVideos();
-  console.log(videos);
   const transformData = videos.items.map((data, i) => ({
     id: data.id,
     channelId: data.snippet.channelId,
