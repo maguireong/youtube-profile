@@ -6,6 +6,7 @@ import { Video } from "../model/Video";
 import { useVideo_Read } from "../model/useVideo_Read";
 import { TopBar } from "../components/Topbar";
 import classNames from "classnames";
+import { Button } from "../components/Button";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
@@ -37,7 +38,13 @@ export default function Likes() {
                 .map((video) => {
                   const datePublished = dayjs(video.publishedAt).fromNow();
                   return (
-                    <section key={video.id} className="w-96 space-y-2">
+                    <Button
+                      link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                        video.id
+                      )}`}
+                      key={video.id}
+                      className="hover:opacity-50 w-96 space-y-2"
+                    >
                       <img
                         src={video.thumbnail.url}
                         height={video.thumbnail.height}
@@ -57,7 +64,7 @@ export default function Likes() {
 
                         <div>{datePublished}</div>
                       </div>
-                    </section>
+                    </Button>
                   );
                 })}
             </div>

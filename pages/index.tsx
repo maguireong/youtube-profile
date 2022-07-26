@@ -105,7 +105,9 @@ function BasicInfo({ videos }: { videos?: Video[] }) {
           <div className="flex flex-col space-y-4">
             {videos?.slice(0, 5).map((video) => (
               <Button
-                link="/likes"
+                link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                  video.id
+                )}`}
                 key={video.id}
                 className="text-wrap space-y-2"
               >

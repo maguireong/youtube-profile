@@ -34,11 +34,11 @@ export default function Subscriptions() {
               ?.filter((sub) =>
                 sub.title.toLowerCase().includes(searchTerm.toLowerCase())
               )
-              .map(({ id, description, title, thumbnail }) => (
+              .map(({ id, title, thumbnail }) => (
                 <Button
                   key={id}
                   link={`/subscriptions/${encodeURIComponent(id)}`}
-                  className="flex hover:bg-opacity-70 items-center m-1 w-48 rounded flex-col gap-y-2"
+                  className="flex hover:opacity-50 items-center m-1 w-48 rounded flex-col gap-y-2"
                 >
                   <img src={thumbnail.url} height="60%" width="60%" />
                   <div className="font-semibold text-lg text-gray-400">

@@ -3,6 +3,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../components";
+import { Button } from "../components/Button";
 import { TopBar } from "../components/Topbar";
 import { usePopularVideo_Read } from "../model/usePopularVideo_Read";
 import { PopularVideo } from "../model/Video";
@@ -38,7 +39,13 @@ export default function Explore() {
                 .map((video) => {
                   const datePublished = dayjs(video.publishedAt).fromNow();
                   return (
-                    <section key={video.id} className="w-96 space-y-2">
+                    <Button
+                      link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                        video.id
+                      )}`}
+                      key={video.id}
+                      className="w-96 space-y-2 hover:opacity-50"
+                    >
                       <img
                         src={video.thumbnail.url}
                         height={video.thumbnail.height}
@@ -52,7 +59,7 @@ export default function Explore() {
 
                         <div>{datePublished}</div>
                       </div>
-                    </section>
+                    </Button>
                   );
                 })}
             </div>

@@ -36,16 +36,14 @@ export default function Playlists() {
                 return (
                   <Button
                     key={video.id}
-                    click={() =>
-                      router.push(
-                        `https://www.youtube.com/watch?v=${video.id}&list=${video.playlistId}`
-                      )
-                    }
-                    className="flex justify-between items-center hover:bg-gray-500 text-white"
+                    link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                      video.id
+                    )}&list=${encodeURIComponent(video.playlistId)}`}
+                    className="flex justify-between items-center hover:opacity-50 text-white"
                   >
                     <div className="space-y-2 ">
                       <div className="text-2xl">{video.title}</div>
-                      <div className="">{video.creatorName}</div>
+                      <div>{video.creatorName}</div>
                     </div>
                     <img
                       src={video.thumbnail.url}

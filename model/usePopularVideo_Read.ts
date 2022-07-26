@@ -22,7 +22,6 @@ export async function usePopularVideo_Read({
     publishedAt: data.snippet.publishedAt,
     playlistId: "",
   }));
-  console.log(transformData);
 
   if (id) {
     const transformedDetaildata =
