@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import dayjs from "dayjs";
 import Cookies from "js-cookie";
+import numeral from "numeral";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../components";
 import { Button } from "../components/Button";
@@ -93,9 +94,11 @@ function UserProfile({
         </div>
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
           <div className="text-youtubeRed text-2xl">
-            {videos
-              ?.flatMap((video) => Number(video.statistics.viewCount))
-              .reduce((partialSum, a) => partialSum + a, 0)}
+            {numeral(
+              videos
+                ?.flatMap((video) => Number(video.statistics.viewCount))
+                .reduce((partialSum, a) => partialSum + a, 0)
+            ).format("0 a")}
           </div>
           <div className="text-white text-2xl">Views</div>
         </div>

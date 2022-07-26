@@ -7,6 +7,7 @@ import { useVideo_Read } from "../model/useVideo_Read";
 import { TopBar } from "../components/Topbar";
 import classNames from "classnames";
 import { Button } from "../components/Button";
+import numeral from "numeral";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
@@ -56,10 +57,16 @@ export default function Likes() {
                       <div className=" text-white">
                         <h1 className="font-semibold">{video.creatorName}</h1>
                         <div className="space-x-2  flex items-center">
-                          <div>{video.statistics.likeCount} likes</div>
+                          <div>
+                            {numeral(video.statistics.likeCount).format("0 a")}{" "}
+                            likes
+                          </div>
                           <div>{video.statistics.commentCount} comments</div>
                           <div>{video.statistics.favoriteCount} comments</div>
-                          <div>{video.statistics.viewCount} views</div>
+                          <div>
+                            {numeral(video.statistics.viewCount).format("0 a")}{" "}
+                            views
+                          </div>
                         </div>
 
                         <div>{datePublished}</div>
