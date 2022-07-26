@@ -4,6 +4,7 @@ import { getCookie } from "cookies-next";
 const access_token = getCookie("accessToken");
 
 const YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3";
+const MAX_RESULTS = 50;
 
 type SubscriptionResult = {
   items: {
@@ -33,7 +34,6 @@ type SubscriptionResult = {
 };
 
 export async function getUserSubscriptions() {
-  const MAX_RESULTS = 50;
   try {
     const params = {
       part: "snippet",
@@ -91,7 +91,6 @@ type StatisticResult = {
 };
 
 export async function getVideoLikes() {
-  const MAX_RESULTS = 50;
   try {
     const params = {
       part: "snippet",
@@ -114,7 +113,6 @@ export async function getVideoLikes() {
 }
 
 export async function getVideoStatistics() {
-  const MAX_RESULTS = 50;
   try {
     const statsParams = {
       part: "statistics",
@@ -138,7 +136,6 @@ export async function getVideoStatistics() {
 }
 
 export async function getVideos() {
-  const MAX_RESULTS = 50;
   try {
     const [videoLikes, videoStatistics] = await Promise.all([
       getVideoLikes(),
@@ -157,6 +154,47 @@ export async function getVideos() {
     console.log(error);
     throw new Error(error.message);
   }
+}
+
+type PopularVideoResults = {
+  items: {
+    id: string;
+    snippet: {
+      publishedAt: string;
+      channelId: string;
+      title: string;
+      description: string;
+      channelTitle: string;
+      thumbnails: {
+        high: {
+          url: string;
+          height: string;
+          width: string;
+        };
+      };
+    };
+  }[];
+  pageInfo: {
+    totalResults: number;
+  };
+};
+
+export async function getPopularVideos() {
+  const params = {
+    part: "snippet",
+    mine: true,
+    access_token,
+    chart: "mostPopular",
+    maxResults: MAX_RESULTS,
+  };
+  const { data } = await axios.get<PopularVideoResults>(
+    `${YOUTUBE_BASE_URL}/videos`,
+    {
+      params,
+    }
+  );
+
+  return data;
 }
 
 type PlaylistIdResults = {

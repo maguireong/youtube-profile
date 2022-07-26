@@ -28,9 +28,9 @@ export function MainTemplate({ children }: { children: ReactNode }) {
       link: "/subscriptions",
     },
     {
-      title: "Activities",
+      title: "Explore",
       icon: <FaRegCompass className="text-white" />,
-      link: "/activities",
+      link: "/explore",
     },
     {
       title: "Playlists",

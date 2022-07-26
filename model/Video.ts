@@ -19,3 +19,5 @@ export type Video = {
   };
   playlistId: string;
 };
+
+export type PopularVideo = Omit<Video, "statistics">;
