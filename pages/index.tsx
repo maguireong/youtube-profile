@@ -54,7 +54,7 @@ export default function Home() {
     <MainTemplate>
       <section className="flex ml-28 flex-col">
         <TopBar />
-        <UserProfile user={user} videos={videos} />
+        <UserProfile user={user} videos={videos} subs={subs} />
         <BasicInfo videos={videos} subs={subs} />
       </section>
     </MainTemplate>
@@ -63,9 +63,17 @@ export default function Home() {
   );
 }
 
-function UserProfile({ user, videos }: { user?: User; videos?: Video[] }) {
+function UserProfile({
+  user,
+  videos,
+  subs,
+}: {
+  user?: User;
+  videos?: Video[];
+  subs?: Subscription[];
+}) {
   return (
-    <div className="flex flex-col gap-y-4 items-center mt-20">
+    <div className="flex flex-col gap-y-4 justify-center items-center mt-20">
       <Avatar
         alt="A"
         sx={{ width: 220, height: 220 }}
@@ -74,18 +82,22 @@ function UserProfile({ user, videos }: { user?: User; videos?: Video[] }) {
       <h1 className="text-4xl font-medium text-white">
         {user?.name ?? "Maguire Ong"}
       </h1>
-      <section className="flex space-x-8">
+      <section className="flex space-x-8 justify-center">
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
           <div className="text-youtubeRed text-2xl">{videos?.length}</div>
-          <div className="text-white">Likes</div>
+          <div className="text-white text-2xl">Likes</div>
         </div>
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
-          <div className="text-youtubeRed text-2xl">{videos?.length}</div>
-          <div className="text-white">Likes</div>
+          <div className="text-youtubeRed text-2xl">{subs?.length}</div>
+          <div className="text-white text-2xl">Subscriptions</div>
         </div>
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
-          <div className="text-youtubeRed text-2xl">{videos?.length}</div>
-          <div className="text-white">Likes</div>
+          <div className="text-youtubeRed text-2xl">
+            {videos
+              ?.flatMap((video) => Number(video.statistics.viewCount))
+              .reduce((partialSum, a) => partialSum + a, 0)}
+          </div>
+          <div className="text-white text-2xl">Views</div>
         </div>
       </section>
       <Button
