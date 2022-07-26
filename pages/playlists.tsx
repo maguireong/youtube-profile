@@ -41,7 +41,7 @@ export default function Playlists() {
                         `https://www.youtube.com/watch?v=${video.id}&list=${video.playlistId}`
                       )
                     }
-                    className="flex justify-between hover:bg-gray-500 text-white"
+                    className="flex justify-between items-center hover:bg-gray-500 text-white"
                   >
                     <div className="space-y-2 ">
                       <div className="text-2xl">{video.title}</div>

@@ -3,6 +3,13 @@ import axios from "axios";
 import qs from "qs";
 import { setCookie } from "cookies-next";
 
+import {
+  GOOGLE_CLIENT_ID,
+  GOOGLE_REDIRECT_URI,
+  GOOGLE_CLIENT_SECRET,
+  BASE_URL,
+} from "../../configs";
+
 type GoogleTokensResult = {
   access_token: string;
   expires_in: Number;
@@ -13,15 +20,12 @@ type GoogleTokensResult = {
 
 async function getGoogleOAuthTokens({ code }: { code: string }) {
   const url = "https://oauth2.googleapis.com/token";
-  const CLIENT_ID = process.env["GOOGLE_CLIENT_ID"];
-  const REDIRECT_URI = process.env["GOOGLE_REDIRECT_URI"];
-  const CLIENT_SECRET = process.env["GOOGLE_CLIENT_SECRET"];
 
   const values = {
     code,
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-    redirect_uri: REDIRECT_URI,
+    client_id: GOOGLE_CLIENT_ID,
+    client_secret: GOOGLE_CLIENT_SECRET,
+    redirect_uri: GOOGLE_REDIRECT_URI,
     grant_type: "authorization_code",
   };
 
@@ -43,7 +47,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const code = String(req.query.code);
-  const domain = process.env["BASE_URL"];
+  const domain = BASE_URL;
   if (!domain) throw new Error("No base domain in .env");
   try {
     // get the requied token using the code
