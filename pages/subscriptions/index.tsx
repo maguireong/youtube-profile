@@ -11,11 +11,9 @@ const MAX_RESULT_PER_PAGE = 50;
 export default function Subscriptions() {
   const [subs, setSubs] = useState<Subscription[]>();
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentCount, setCurrentCount] = useState(0);
   const getSubscriptions = async () => {
-    const [transformData, totalResults] = await useSubscription_Read({});
+    const transformData = await useSubscription_Read({});
     setSubs(Array.isArray(transformData) ? transformData : undefined);
-    setCurrentCount(totalResults);
   };
   useEffect(() => {
     getSubscriptions();

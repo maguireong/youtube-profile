@@ -5,12 +5,7 @@ export async function useSubscription_Read({
   id,
 }: {
   id?: string;
-}): Promise<
-  [
-    transformData: Subscription | Subscription[] | "loading",
-    totalResults: number
-  ]
-> {
+}): Promise<Subscription | Subscription[] | "loading"> {
   const data = await getUserSubscriptions();
   const transformData = data.items.map((data, i) => ({
     id: data.id,
@@ -26,15 +21,12 @@ export async function useSubscription_Read({
     subscriptAt: data.snippet.publishedAt,
   }));
 
-  const totalResults = data.pageInfo.totalResults;
-
   if (id) {
     const transformedDetailData =
       transformData.find((data) => data.id === id) ?? "loading";
 
-    return [transformedDetailData, totalResults];
+    return transformedDetailData;
   }
-  const subscriptionData = transformData;
 
-  return [subscriptionData, totalResults];
+  return transformData;
 }

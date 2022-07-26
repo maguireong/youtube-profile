@@ -109,7 +109,7 @@ function BasicInfo({ videos }: { videos?: Video[] }) {
                   video.id
                 )}`}
                 key={video.id}
-                className="text-wrap space-y-2"
+                className="text-wrap space-y-2 hover:opacity-50"
               >
                 <img
                   src={video.thumbnail.url}
