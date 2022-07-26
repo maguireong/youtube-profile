@@ -13,7 +13,7 @@ export default function SubscriptionDetail() {
 
   useEffect(() => {
     const getSubscriptions = async () => {
-      const [subscriptionData, _] = await useSubscription_Read({ id });
+      const subscriptionData = await useSubscription_Read({ id });
       setSub(Array.isArray(subscriptionData) ? undefined : subscriptionData);
     };
     getSubscriptions();
