@@ -1,8 +1,8 @@
 import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { FaYoutube } from "react-icons/fa";
-import { User } from "../model/User";
-import { getGoogleUser } from "../server/getGoogleUrl";
+import { User } from "../model";
+import { getUser } from "../server";
 import { SearchInput } from "./SearchInput";
 
 type TopBarProps = {
@@ -16,7 +16,7 @@ export function TopBar({
 }: TopBarProps) {
   const [user, setUser] = useState<User>();
   const getUserData = async () => {
-    const data = await getGoogleUser();
+    const data = await getUser();
     setUser({
       id: data.id,
       email: data.email,

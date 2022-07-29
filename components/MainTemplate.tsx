@@ -3,10 +3,10 @@ import { FaCompass, FaThumbsUp } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
-import { SidePanel } from "./SidePanel";
 import Head from "next/head";
 import { useShowPageTransitionLoader } from "../pageTransitions";
 import { CircularProgress } from "@mui/material";
+import { SidePanel } from "./SidePanel";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();

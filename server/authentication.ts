@@ -43,7 +43,7 @@ type GoogleUserResult = {
   locale: string;
 };
 
-export async function getGoogleUser(): Promise<GoogleUserResult> {
+export async function getUser(): Promise<GoogleUserResult> {
   try {
     const { data } = await axios.get<GoogleUserResult>(
       `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,

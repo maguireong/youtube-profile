@@ -1,12 +1,8 @@
-import { CircularProgress } from "@mui/material";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { MainTemplate } from "../components";
-import { Button } from "../components/Button";
-import { TopBar } from "../components/Topbar";
-import { Playlist } from "../model/Playlist";
-import { usePlaylist_Read } from "../model/usePlaylist_Read";
+import { Button, MainTemplate, TopBar } from "../components";
+import { Playlist, usePlaylist_Read } from "../model";
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState<Playlist[]>();

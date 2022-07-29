@@ -1,7 +1,7 @@
 import { FaYoutube } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "../components/Button";
-import getGoogleOAuthURL from "../server/getGoogleUrl";
+import { Button } from "../components";
+import getGoogleOAuthURL from "../server/authentication";
 
 export function LandingPage() {
   const link = getGoogleOAuthURL();

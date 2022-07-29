@@ -1,5 +1,5 @@
-import { getPopularVideos } from "../server/endpoints";
-import { PopularVideo } from "./Video";
+import { getPopularVideos } from "../../server";
+import { PopularVideo } from ".";
 
 export async function usePopularVideo_Read({
   id,

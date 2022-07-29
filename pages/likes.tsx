@@ -1,13 +1,10 @@
 import { Skeleton } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { MainTemplate } from "../components";
-import { Video } from "../model/Video";
-import { useVideo_Read } from "../model/useVideo_Read";
-import { TopBar } from "../components/Topbar";
+import { Button, MainTemplate, TopBar } from "../components";
 import classNames from "classnames";
-import { Button } from "../components/Button";
 import numeral from "numeral";
+import { Video, useVideo_Read } from "../model";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();

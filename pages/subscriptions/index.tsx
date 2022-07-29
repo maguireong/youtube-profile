@@ -1,12 +1,8 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { MainTemplate } from "../../components";
-import { Button } from "../../components/Button";
-import { TopBar } from "../../components/Topbar";
+import { Button, MainTemplate, TopBar } from "../../components";
 import { Subscription } from "../../model/Subscription";
-import { useSubscription_Read } from "../../model/useSubscription_Read";
-
-const MAX_RESULT_PER_PAGE = 50;
+import { useSubscription_Read } from "../../model";
 
 export default function Subscriptions() {
   const [subs, setSubs] = useState<Subscription[]>();

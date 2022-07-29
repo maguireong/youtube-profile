@@ -3,19 +3,15 @@ import dayjs from "dayjs";
 import Cookies from "js-cookie";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
-import { MainTemplate } from "../components";
-import { Button } from "../components/Button";
-import { TopBar } from "../components/Topbar";
-import { Subscription } from "../model/Subscription";
-import { User } from "../model/User";
-import { useSubscription_Read } from "../model/useSubscription_Read";
-import { useVideo_Read } from "../model/useVideo_Read";
-import { Video } from "../model/Video";
+import { Button, MainTemplate, TopBar } from "../components";
 import {
-  getGoogleUser,
-  logout,
-  refreshAccessToken,
-} from "../server/getGoogleUrl";
+  User,
+  Video,
+  Subscription,
+  useVideo_Read,
+  useSubscription_Read,
+} from "../model";
+import { getUser, logout, refreshAccessToken } from "../server";
 import { LandingPage } from "../views/LandingPage";
 
 export default function Home() {
@@ -27,7 +23,7 @@ export default function Home() {
   const [subs, setSubs] = useState<Subscription[]>();
 
   const getUserData = async () => {
-    const data = await getGoogleUser();
+    const data = await getUser();
     setUser({
       id: data.id,
       email: data.email,

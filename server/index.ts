@@ -1,2 +1,2 @@
 export * from "./endpoints";
-export * from "./getGoogleUrl";
+export * from "./authentication";

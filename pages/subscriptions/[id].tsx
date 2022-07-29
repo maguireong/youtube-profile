@@ -2,8 +2,7 @@ import { Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../../components";
-import { Subscription } from "../../model/Subscription";
-import { useSubscription_Read } from "../../model/useSubscription_Read";
+import { Subscription, useSubscription_Read } from "../../model";
 import { SubscriptionDetailView } from "../../views/SubscriptionDetailView";
 
 export default function SubscriptionDetail() {

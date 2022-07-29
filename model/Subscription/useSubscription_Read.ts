@@ -1,5 +1,5 @@
-import { getUserSubscriptions } from "../server/endpoints";
-import { Subscription } from "./Subscription";
+import { Subscription } from ".";
+import { getUserSubscriptions } from "../../server";
 
 export async function useSubscription_Read({
   id,

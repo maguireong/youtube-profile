@@ -2,11 +2,8 @@ import { Skeleton } from "@mui/material";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { MainTemplate } from "../components";
-import { Button } from "../components/Button";
-import { TopBar } from "../components/Topbar";
-import { usePopularVideo_Read } from "../model/usePopularVideo_Read";
-import { PopularVideo } from "../model/Video";
+import { Button, MainTemplate, TopBar } from "../components";
+import { PopularVideo, usePopularVideo_Read } from "../model";
 
 export default function Explore() {
   const [videos, setVideos] = useState<PopularVideo[] | "loading">();

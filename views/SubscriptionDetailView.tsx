@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Subscription } from "../model/Subscription";
+import { Subscription } from "../model";
 
 export function SubscriptionDetailView({
   subscription,

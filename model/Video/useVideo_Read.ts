@@ -1,5 +1,5 @@
-import { getVideoLikes, getVideos } from "../server/endpoints";
-import { Video } from "./Video";
+import { Video } from ".";
+import { getVideos } from "../../server";
 
 export async function useVideo_Read({
   id,

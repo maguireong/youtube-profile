@@ -1,6 +1,6 @@
-import { getPlaylists } from "../server/endpoints";
-import { Playlist } from "./Playlist";
-import { Video } from "./Video";
+import { Playlist } from ".";
+import { getPlaylists } from "../../server";
+import { Video } from "../Video";
 
 export async function usePlaylist_Read(): Promise<Playlist[]> {
   const playlists = await getPlaylists();
