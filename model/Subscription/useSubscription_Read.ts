@@ -21,7 +21,8 @@ export async function useSubscription_Read(prop: {
 
   if (prop.id) {
     const transformedDetailData =
-      transformData.find((data) => data.id === prop.id) ?? "loading";
+      transformData.find((detailData) => detailData.id === prop.id) ??
+      "loading";
 
     return transformedDetailData;
   }
