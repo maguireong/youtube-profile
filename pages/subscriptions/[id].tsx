@@ -2,7 +2,7 @@ import { Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../../components";
-import { Subscription, useSubscription_Read } from "../../model";
+import { getSubscriptionData, Subscription } from "../../model";
 import { SubscriptionDetailView } from "../../views";
 
 export default function SubscriptionDetail() {
@@ -12,7 +12,7 @@ export default function SubscriptionDetail() {
 
   useEffect(() => {
     const getSubscriptions = async () => {
-      const subscriptionData = await useSubscription_Read({ id });
+      const subscriptionData = await getSubscriptionData({ id });
       setSub(Array.isArray(subscriptionData) ? undefined : subscriptionData);
     };
     getSubscriptions();

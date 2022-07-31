@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
 import classNames from "classnames";
 import numeral from "numeral";
-import { Video, useVideo_Read } from "../model";
+import { getVideoData, Video } from "../model";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
   const getLikes = async () => {
-    const transformData = await useVideo_Read({});
+    const transformData = await getVideoData({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
   };
   useEffect(() => {

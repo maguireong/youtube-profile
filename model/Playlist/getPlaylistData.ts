@@ -1,9 +1,9 @@
 import { Playlist } from ".";
-import { getPlaylists } from "../../server";
+import { fetchPlaylists } from "../../server";
 import { Video } from "../Video";
 
-export async function usePlaylist_Read(): Promise<Playlist[]> {
-  const playlists = await getPlaylists();
+export async function getPlaylistData(): Promise<Playlist[]> {
+  const playlists = await fetchPlaylists();
   const transformData = playlists.map((playlist, i) => {
     const videos: Omit<Video, "statistics">[] = playlist.items.map((video) => ({
       id: video.snippet.resourceId.videoId,

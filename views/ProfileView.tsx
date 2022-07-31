@@ -7,8 +7,8 @@ import {
   User,
   Video,
   Subscription,
-  useSubscription_Read,
-  useVideo_Read,
+  getVideoData,
+  getSubscriptionData,
 } from "../model";
 import { getUser, logout } from "../server";
 
@@ -27,11 +27,11 @@ export function ProfileView() {
     });
   };
   const getLikes = async () => {
-    const transformData = await useVideo_Read({});
+    const transformData = await getVideoData({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
   };
   const getSubscriptions = async () => {
-    const transformData = await useSubscription_Read({});
+    const transformData = await getSubscriptionData({});
     setSubs(Array.isArray(transformData) ? transformData : undefined);
   };
 

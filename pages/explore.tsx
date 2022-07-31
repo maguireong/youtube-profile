@@ -3,13 +3,13 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
-import { PopularVideo, usePopularVideo_Read } from "../model";
+import { getPopularVideoData, PopularVideo } from "../model";
 
 export default function Explore() {
   const [videos, setVideos] = useState<PopularVideo[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
   const getPopularVideos = async () => {
-    const transformData = await usePopularVideo_Read({});
+    const transformData = await getPopularVideoData({});
     setVideos(Array.isArray(transformData) ? transformData : undefined);
   };
   useEffect(() => {

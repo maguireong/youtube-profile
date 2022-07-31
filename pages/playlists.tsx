@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
-import { Playlist, usePlaylist_Read } from "../model";
+import { getPlaylistData, Playlist } from "../model";
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState<Playlist[]>();
   const [searchTerm, setSearchTerm] = useState("");
   const getPlaylists = async () => {
-    const data = await usePlaylist_Read();
+    const data = await getPlaylistData();
     setPlaylists(data);
   };
   useEffect(() => {

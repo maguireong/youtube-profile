@@ -44,7 +44,7 @@ type StatisticResult = {
   };
 };
 
-export async function getVideoLikes() {
+export async function fetchVideoLikes() {
   try {
     const params = {
       part: "snippet",
@@ -66,7 +66,7 @@ export async function getVideoLikes() {
   }
 }
 
-export async function getVideoStatistics() {
+export async function fetchVideoStatistics() {
   try {
     const statsParams = {
       part: "statistics",
@@ -89,11 +89,11 @@ export async function getVideoStatistics() {
   }
 }
 
-export async function getVideos() {
+export async function fetchVideos() {
   try {
     const [videoLikes, videoStatistics] = await Promise.all([
-      getVideoLikes(),
-      getVideoStatistics(),
+      fetchVideoLikes(),
+      fetchVideoStatistics(),
     ]);
 
     const combined = videoLikes.items.map((video) => {
@@ -135,7 +135,7 @@ type PopularVideoResults = {
   };
 };
 
-export async function getPopularVideos() {
+export async function fetchPopularVideos() {
   const params = {
     part: "snippet",
     mine: true,

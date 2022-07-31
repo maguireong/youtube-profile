@@ -12,7 +12,7 @@ type PlaylistIdResults = {
   }[];
 };
 
-export async function getPlaylistIds() {
+export async function fetchPlaylistIds() {
   try {
     const statsParams = {
       part: "snippet",
@@ -61,7 +61,7 @@ type PlaylistItemsResults = {
   };
 };
 
-export async function getPlaylistItems(playlistId: string) {
+export async function fetchPlaylistItems(playlistId: string) {
   try {
     const statsParams = {
       part: "snippet",
@@ -85,11 +85,11 @@ export async function getPlaylistItems(playlistId: string) {
   }
 }
 
-export async function getPlaylists() {
+export async function fetchPlaylists() {
   try {
-    const playlistIds = await getPlaylistIds();
+    const playlistIds = await fetchPlaylistIds();
     const playlists = await Promise.all(
-      playlistIds.map((id) => getPlaylistItems(id))
+      playlistIds.map((id) => fetchPlaylistItems(id))
     );
 
     const playlistsWithIds = playlists.map((playlist, i) => ({

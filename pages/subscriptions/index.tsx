@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../../components";
-import { Subscription, useSubscription_Read } from "../../model";
+import { getSubscriptionData, Subscription } from "../../model";
 
 export default function Subscriptions() {
   const [subs, setSubs] = useState<Subscription[]>();
   const [searchTerm, setSearchTerm] = useState("");
   const getSubscriptions = async () => {
-    const transformData = await useSubscription_Read({});
+    const transformData = await getSubscriptionData({});
     setSubs(Array.isArray(transformData) ? transformData : undefined);
   };
   useEffect(() => {

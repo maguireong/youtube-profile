@@ -33,7 +33,7 @@ type SubscriptionResult = {
   };
 };
 
-export async function getUserSubscriptions() {
+export async function fetchUserSubscriptions() {
   try {
     const params = {
       part: "snippet",

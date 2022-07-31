@@ -1,12 +1,12 @@
-import { getPopularVideos } from "../../server";
+import { fetchPopularVideos } from "../../server";
 import { PopularVideo } from ".";
 
-export async function usePopularVideo_Read({
+export async function getPopularVideoData({
   id,
 }: {
   id?: string;
 }): Promise<PopularVideo | PopularVideo[] | "loading"> {
-  const videos = await getPopularVideos();
+  const videos = await fetchPopularVideos();
   const transformData = videos.items.map((data, i) => ({
     id: data.id,
     channelId: data.snippet.channelId,

@@ -1,10 +1,10 @@
 import { Subscription } from ".";
-import { getUserSubscriptions } from "../../server";
+import { fetchUserSubscriptions } from "../../server";
 
-export async function useSubscription_Read(prop: {
+export async function getSubscriptionData(prop: {
   id?: string;
 }): Promise<Subscription | Subscription[] | "loading"> {
-  const data = await getUserSubscriptions();
+  const data = await fetchUserSubscriptions();
   const transformData = data.items.map(({ id, snippet }, i) => ({
     id,
     channelId: snippet.channelId,

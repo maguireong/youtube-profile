@@ -1,12 +1,12 @@
 import { Video } from ".";
-import { getVideos } from "../../server";
+import { fetchVideos } from "../../server";
 
-export async function useVideo_Read({
+export async function getVideoData({
   id,
 }: {
   id?: string;
 }): Promise<Video | Video[] | "loading"> {
-  const videos = await getVideos();
+  const videos = await fetchVideos();
   const transformData = videos.map((data, i) => ({
     id: data?.id,
     channelId: data?.snippet.channelId,
