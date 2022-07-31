@@ -3,7 +3,8 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
-import { getPopularVideoData, PopularVideo } from "../model";
+import { PopularVideo } from "../model";
+import { getPopularVideoData } from "../youtube";
 
 export default function Explore() {
   const [videos, setVideos] = useState<PopularVideo[] | "loading">();

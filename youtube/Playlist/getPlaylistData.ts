@@ -1,6 +1,5 @@
-import { Playlist } from ".";
+import { Playlist, Video } from "../../model";
 import { fetchPlaylists } from "../../server";
-import { Video } from "../Video";
 
 export async function getPlaylistData(): Promise<Playlist[]> {
   const playlists = await fetchPlaylists();

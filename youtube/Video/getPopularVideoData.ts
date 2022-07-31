@@ -1,5 +1,5 @@
+import { PopularVideo } from "../../model";
 import { fetchPopularVideos } from "../../server";
-import { PopularVideo } from ".";
 
 export async function getPopularVideoData({
   id,

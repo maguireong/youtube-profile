@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
 import classNames from "classnames";
 import numeral from "numeral";
-import { getVideoData, Video } from "../model";
+import { Video } from "../model";
+import { getVideoData } from "../youtube";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();

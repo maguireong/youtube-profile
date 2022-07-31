@@ -21,5 +21,3 @@ export type Video = {
 };
 
 export type PopularVideo = Omit<Video, "statistics">;
-export * from "./getPopularVideoData";
-export * from "./getVideoData";

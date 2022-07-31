@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
-import { getPlaylistData, Playlist } from "../model";
+import { Playlist } from "../model";
+import { getPlaylistData } from "../youtube";
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState<Playlist[]>();

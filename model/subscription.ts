@@ -11,5 +11,3 @@ export type Subscription = {
   };
   subscriptAt: string;
 };
-
-export * from "./getSubscriptionData";

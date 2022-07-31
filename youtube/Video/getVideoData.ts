@@ -1,4 +1,4 @@
-import { Video } from ".";
+import { Video } from "../../model";
 import { fetchVideos } from "../../server";
 
 export async function getVideoData({

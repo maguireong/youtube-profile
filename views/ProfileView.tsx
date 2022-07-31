@@ -3,14 +3,9 @@ import dayjs from "dayjs";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
 import { MainTemplate, TopBar, Button } from "../components";
-import {
-  User,
-  Video,
-  Subscription,
-  getVideoData,
-  getSubscriptionData,
-} from "../model";
+import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
+import { getVideoData, getSubscriptionData } from "../youtube";
 
 export function ProfileView() {
   const [user, setUser] = useState<User>();

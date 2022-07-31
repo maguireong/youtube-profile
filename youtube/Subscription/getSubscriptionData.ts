@@ -1,4 +1,4 @@
-import { Subscription } from ".";
+import { Subscription } from "../../model";
 import { fetchUserSubscriptions } from "../../server";
 
 export async function getSubscriptionData(prop: {

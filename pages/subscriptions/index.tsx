@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../../components";
-import { getSubscriptionData, Subscription } from "../../model";
+import { Subscription } from "../../model";
+import { getSubscriptionData } from "../../youtube";
 
 export default function Subscriptions() {
   const [subs, setSubs] = useState<Subscription[]>();
