@@ -1,8 +1,7 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../../components";
-import { Subscription } from "../../model/Subscription";
-import { useSubscription_Read } from "../../model";
+import { Subscription, useSubscription_Read } from "../../model";
 
 export default function Subscriptions() {
   const [subs, setSubs] = useState<Subscription[]>();
@@ -34,7 +33,12 @@ export default function Subscriptions() {
                   link={`/subscriptions/${encodeURIComponent(id)}`}
                   className="flex hover:opacity-50 items-center m-1 w-48 rounded flex-col gap-y-2"
                 >
-                  <img src={thumbnail.url} height="60%" width="60%" />
+                  <img
+                    src={thumbnail.url}
+                    alt="Subscription thumbnail"
+                    height="60%"
+                    width="60%"
+                  />
                   <div className="font-semibold text-lg text-gray-400">
                     {title}
                   </div>

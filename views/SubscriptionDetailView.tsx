@@ -11,6 +11,7 @@ export function SubscriptionDetailView({
     <div className="flex flex-col w-1/3 items-center gap-y-4">
       <img
         className="rounded-full"
+        alt="Subcription thumbnail"
         src={subscription.thumbnail.url}
         height="40%"
         width="40%"

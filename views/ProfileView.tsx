@@ -131,6 +131,7 @@ function BasicInfo({
                 className="text-wrap space-y-2 hover:opacity-50"
               >
                 <img
+                  alt="Video thumbnail"
                   src={video.thumbnail.url}
                   height={video.thumbnail.height}
                   width={video.thumbnail.width}
@@ -165,6 +166,7 @@ function BasicInfo({
                 >
                   <div className="flex items-center space-x-2">
                     <img
+                      alt="Subscription thumbnail"
                       src={thumbnail.url}
                       height={thumbnail.height}
                       width={thumbnail.width}

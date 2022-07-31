@@ -8,7 +8,6 @@ module.exports = {
     "./lib/color.ts",
   ],
   theme: {
-    extend: {},
     extend: {
       colors: {
         youtubeRed: "#FF0000",

@@ -1,29 +1,27 @@
 import { Subscription } from ".";
 import { getUserSubscriptions } from "../../server";
 
-export async function useSubscription_Read({
-  id,
-}: {
+export async function useSubscription_Read(prop: {
   id?: string;
 }): Promise<Subscription | Subscription[] | "loading"> {
   const data = await getUserSubscriptions();
-  const transformData = data.items.map((data, i) => ({
-    id: data.id,
-    channelId: data.snippet.channelId,
+  const transformData = data.items.map(({ id, snippet }, i) => ({
+    id,
+    channelId: snippet.channelId,
     mostRecentIndex: i,
-    description: data.snippet.description,
-    title: data.snippet.title,
+    description: snippet.description,
+    title: snippet.title,
     thumbnail: {
-      url: data.snippet.thumbnails.default.url,
-      height: data.snippet.thumbnails.default.height,
-      width: data.snippet.thumbnails.default.width,
+      url: snippet.thumbnails.default.url,
+      height: snippet.thumbnails.default.height,
+      width: snippet.thumbnails.default.width,
     },
-    subscriptAt: data.snippet.publishedAt,
+    subscriptAt: snippet.publishedAt,
   }));
 
-  if (id) {
+  if (prop.id) {
     const transformedDetailData =
-      transformData.find((data) => data.id === id) ?? "loading";
+      transformData.find((data) => data.id === prop.id) ?? "loading";
 
     return transformedDetailData;
   }

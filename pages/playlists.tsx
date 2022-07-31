@@ -39,6 +39,7 @@ export default function Playlists() {
                       <div>{video.creatorName}</div>
                     </div>
                     <img
+                      alt="Playlist thumbnail"
                       src={video.thumbnail.url}
                       height={video.thumbnail.height}
                       width={video.thumbnail.width}

@@ -206,7 +206,6 @@ type PlaylistIdResults = {
 };
 
 export async function getPlaylistIds() {
-  const MAX_RESULTS = 50;
   try {
     const statsParams = {
       part: "snippet",
@@ -256,7 +255,6 @@ type PlaylistItemsResults = {
 };
 
 export async function getPlaylistItems(playlistId: string) {
-  const MAX_RESULTS = 50;
   try {
     const statsParams = {
       part: "snippet",

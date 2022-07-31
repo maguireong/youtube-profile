@@ -44,6 +44,7 @@ export default function Explore() {
                       className="w-96 space-y-2 hover:opacity-50"
                     >
                       <img
+                        alt="Video thumbnail"
                         src={video.thumbnail.url}
                         height={video.thumbnail.height}
                         width={video.thumbnail.width}

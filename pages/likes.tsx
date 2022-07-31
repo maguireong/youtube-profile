@@ -44,6 +44,7 @@ export default function Likes() {
                       className="hover:opacity-50 w-96 space-y-2"
                     >
                       <img
+                        alt="Video thumbnail"
                         src={video.thumbnail.url}
                         height={video.thumbnail.height}
                         width={video.thumbnail.width}

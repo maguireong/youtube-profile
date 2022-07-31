@@ -6,7 +6,7 @@ import {
   GOOGLE_REDIRECT_URI,
 } from "../configs";
 
-export default function getGoogleOAuthURL() {
+export function getGoogleOAuthURL() {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
 
   const options = {

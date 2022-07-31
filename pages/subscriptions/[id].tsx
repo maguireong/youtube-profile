@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../../components";
 import { Subscription, useSubscription_Read } from "../../model";
-import { SubscriptionDetailView } from "../../views/SubscriptionDetailView";
+import { SubscriptionDetailView } from "../../views";
 
 export default function SubscriptionDetail() {
   const router = useRouter();

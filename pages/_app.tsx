@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
+// eslint-disable-next-line
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import dayjs from "dayjs";
 import { useState } from "react";
