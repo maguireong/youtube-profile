@@ -8,6 +8,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ClientOnly } from "../components";
 dayjs.extend(relativeTime);
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <ClientOnly>
+          <Component {...pageProps} />
+        </ClientOnly>
       </Hydrate>
     </QueryClientProvider>
   );

@@ -32,6 +32,11 @@ const id_token = getCookie("idToken");
 const access_token = getCookie("accessToken");
 const refresh_token = getCookie("refreshToken");
 
+export function retrieveAccessToken() {
+  if (access_token) refreshAccessToken();
+  return access_token;
+}
+
 type GoogleUserResult = {
   id: string;
   email: string;
@@ -79,7 +84,6 @@ export async function refreshAccessToken() {
 
   setCookie("idToken", refreshedIdToken, { maxAge: 9000 });
   setCookie("accessToken", refreshedAccessToken, { maxAge: 9000 });
-
   return;
 }
 
