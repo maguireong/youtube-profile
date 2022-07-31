@@ -58,7 +58,7 @@ export default async function handler(
     setCookie("accessToken", access_token, { req, res, maxAge: 9000 });
     setCookie("refreshToken", refresh_token, { req, res, maxAge: 3.154e10 });
 
-    res.redirect(domain);
+    return res.redirect(domain);
   } catch (error) {
     console.log(error, "Failed to authorize Google user");
     return res.redirect(`${domain}/error`);

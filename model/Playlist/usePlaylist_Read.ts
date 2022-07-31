@@ -18,7 +18,7 @@ export async function usePlaylist_Read(): Promise<Playlist[]> {
         width: video.snippet.thumbnails.high?.width,
       },
       publishedAt: video.snippet.publishedAt,
-      playlistId: playlist.playlistId,
+      playlistId: playlist.playlistId ?? "",
     }));
     return videos;
   });

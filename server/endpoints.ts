@@ -146,6 +146,8 @@ export async function getVideos() {
       const [videoStat] = videoStatistics.items.filter(
         (stat) => stat.id === video.id
       );
+      if (!videoStat)
+        throw new Error(`Video statistic for ${video.id} is undefined`);
       return { ...video, statistics: videoStat.statistics };
     });
 
@@ -218,8 +220,8 @@ export async function getPlaylistIds() {
         params: statsParams,
       }
     );
-
-    return data;
+    const formattedData = data.items.map(({ id }) => id);
+    return formattedData;
   } catch (error: any) {
     console.log(error);
     throw new Error(error.message);
@@ -282,12 +284,13 @@ export async function getPlaylists() {
   try {
     const playlistIds = await getPlaylistIds();
     const playlists = await Promise.all(
-      playlistIds.items.map(({ id }) => getPlaylistItems(id))
+      playlistIds.map((id) => getPlaylistItems(id))
     );
 
-    const playlistsWithIds = playlists.map((playlist, i) => {
-      return { playlistId: playlistIds.items[i].id, ...playlist };
-    });
+    const playlistsWithIds = playlists.map((playlist, i) => ({
+      playlistId: playlistIds[i],
+      ...playlist,
+    }));
 
     return playlistsWithIds;
   } catch (error: any) {

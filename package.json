@@ -4,7 +4,13 @@
     "dev": "next dev",
     "dev:https": "NODE_EXTRA_CA_CERTS='./localhost-ca.pem' .env yarn run dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "yarn run lint:fix",
+    "typecheck": "tsc",
+    "format": "yarn run format:fix",
+    "format:fix": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:format": "echo 'Use yarn run format:check'; yarn run format:check"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -40,6 +46,7 @@
     "next": "latest",
     "numeral": "^2.0.6",
     "passport": "^0.6.0",
+    "prettier": "^2.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
@@ -55,7 +62,7 @@
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.5",
     "autoprefixer": "^10.4.7",
-    "eslint": "8.20.0",
+    "eslint": "^8.20.0",
     "eslint-config-next": "12.2.2",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.2",

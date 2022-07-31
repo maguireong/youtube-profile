@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Button, MainTemplate, TopBar } from "../components";
 import { Playlist, usePlaylist_Read } from "../model";
@@ -14,8 +13,6 @@ export default function Playlists() {
   useEffect(() => {
     getPlaylists();
   }, []);
-
-  const router = useRouter();
 
   return (
     <MainTemplate>
