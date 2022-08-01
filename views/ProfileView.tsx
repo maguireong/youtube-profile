@@ -3,15 +3,16 @@ import dayjs from "dayjs";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
 import { MainTemplate, Button, ClickArea } from "../components";
-import { windowWidth } from "../configs";
 import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
+import { useWindowWidth } from "../useWindowWidth";
 import { getVideoData, getSubscriptionData } from "../youtube";
 
 export function ProfileView() {
   const [user, setUser] = useState<User>();
   const [videos, setVideos] = useState<Video[]>();
   const [subs, setSubs] = useState<Subscription[]>();
+  const isMobileView = useWindowWidth() < 1290;
 
   const getUserData = async () => {
     const data = await getUser();
@@ -41,7 +42,7 @@ export function ProfileView() {
     <MainTemplate>
       <section
         className={classNames(
-          windowWidth ? "mx-8 pb-12" : "ml-32",
+          isMobileView ? "mx-8 pb-12" : "ml-32",
           "flex flex-col"
         )}
       >
@@ -61,6 +62,7 @@ function UserProfile({
   videos?: Video[];
   subs?: Subscription[];
 }) {
+  const isMobileView = useWindowWidth() < 1290;
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center mt-20">
       <img
@@ -73,7 +75,7 @@ function UserProfile({
       </h1>
       <section
         className={classNames(
-          windowWidth ? "space-x-3" : "space-x-8",
+          isMobileView ? "space-x-3" : "space-x-8",
           "flex justify-center"
         )}
       >
@@ -112,29 +114,30 @@ function BasicInfo({
   videos?: Video[];
   subs?: Subscription[];
 }) {
+  const isMobileView = useWindowWidth() < 1290;
   const seeMoreCss = classNames(
-    windowWidth ? "text-xs" : "text-base",
+    isMobileView ? "text-xs" : "text-base",
     "border-2 hover:bg-white hover:text-black border-white flex items-center rounded-full py-1.5 px-5 font-medium"
   );
 
   return (
-    <main className={classNames(windowWidth ? "" : "mx-24", "my-12")}>
+    <main className={classNames(isMobileView ? "" : "mx-24", "my-12")}>
       <div
         className={classNames(
-          windowWidth ? "flex-col space-y-12" : "space-x-24 justify-between",
+          isMobileView ? "flex-col space-y-12" : "space-x-24 justify-between",
           "flex"
         )}
       >
         <div
           className={classNames(
-            windowWidth ? "" : "w-1/2",
+            isMobileView ? "" : "w-1/2",
             "text-white flex flex-col space-y-4"
           )}
         >
           <h1 className="flex justify-between items-center">
             <div
               className={classNames(
-                windowWidth ? "text-base" : "text-2xl",
+                isMobileView ? "text-base" : "text-2xl",
                 "font-semibold"
               )}
             >
@@ -175,14 +178,14 @@ function BasicInfo({
         </div>
         <div
           className={classNames(
-            windowWidth ? "" : "w-1/2",
+            isMobileView ? "" : "w-1/2",
             "text-white flex flex-col space-y-4"
           )}
         >
           <div className="flex justify-between items-center">
             <h1
               className={classNames(
-                windowWidth ? "text-base" : "text-2xl",
+                isMobileView ? "text-base" : "text-2xl",
                 "font-semibold"
               )}
             >
@@ -198,7 +201,7 @@ function BasicInfo({
           <div className="flex flex-col gap-6">
             {subs?.slice(0, 20).map(({ id, subscriptAt, title, thumbnail }) => {
               const dateSubscript = dayjs(subscriptAt).format("DD/MM/YYYY");
-              return windowWidth ? (
+              return isMobileView ? (
                 <ClickArea
                   key={id}
                   click={`/subscriptions/${encodeURIComponent(id)}`}

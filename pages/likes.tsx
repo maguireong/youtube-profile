@@ -4,10 +4,11 @@ import { ClickArea, MainTemplate, TopBar } from "../components";
 import numeral from "numeral";
 import { Video } from "../model";
 import { getVideoData } from "../youtube";
-import { windowWidth } from "../configs";
 import classNames from "classnames";
+import { useWindowWidth } from "../useWindowWidth";
 
 export default function Likes() {
+  const isMobileView = useWindowWidth() < 1290;
   const [videos, setVideos] = useState<Video[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
   const getLikes = async () => {
@@ -20,13 +21,13 @@ export default function Likes() {
   return (
     <MainTemplate>
       <main className={searchTerm && "h-screen"}>
-        {!windowWidth && (
+        {!isMobileView && (
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         )}
-        <section className={windowWidth ? "pt-12 pb-28 mx-8" : "mx-32 py-12"}>
+        <section className={isMobileView ? "pt-12 pb-28 mx-8" : "mx-32 py-12"}>
           <h1
             className={classNames(
-              windowWidth ? "flex justify-center" : "ml-24",
+              isMobileView ? "flex justify-center" : "ml-24",
               "text-4xl my-12 text-white"
             )}
           >
@@ -35,7 +36,7 @@ export default function Likes() {
 
           <div
             className={classNames(
-              windowWidth ? "ml-2" : "ml-24",
+              isMobileView ? "ml-2" : "ml-24",
               "flex flex-wrap gap-4 items-start"
             )}
           >

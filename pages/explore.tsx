@@ -2,11 +2,12 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../components";
-import { windowWidth } from "../configs";
 import { PopularVideo } from "../model";
+import { useWindowWidth } from "../useWindowWidth";
 import { getPopularVideoData } from "../youtube";
 
 export default function Explore() {
+  const isMobileView = useWindowWidth() < 1290;
   const [videos, setVideos] = useState<PopularVideo[] | "loading">();
   const [searchTerm, setSearchTerm] = useState("");
   const getPopularVideos = async () => {
@@ -19,15 +20,15 @@ export default function Explore() {
   return (
     <MainTemplate>
       <main className={classNames(searchTerm && "h-screen")}>
-        {!windowWidth && (
+        {!isMobileView && (
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         )}
         <section
-          className={classNames(windowWidth ? "mx-8 pb-24" : "mx-32", "py-12")}
+          className={classNames(isMobileView ? "mx-8 pb-24" : "mx-32", "py-12")}
         >
           <h1
             className={classNames(
-              windowWidth ? "flex text-center" : "ml-24",
+              isMobileView ? "flex text-center" : "ml-24",
               "text-4xl my-12 text-white"
             )}
           >

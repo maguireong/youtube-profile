@@ -27,7 +27,7 @@ export function BottomPanel(props: SidePanelProps) {
     );
 
   return (
-    <div className="flex fixed bottom-0 bg-black items-center">
+    <div className="flex fixed bottom-0 w-full justify-evenly bg-black items-center">
       {tabs.map((tab) => (
         <ClickArea
           key={tab.title}

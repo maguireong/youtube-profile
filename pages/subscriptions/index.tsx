@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../../components";
-import { windowWidth } from "../../configs";
 import { Subscription } from "../../model";
+import { useWindowWidth } from "../../useWindowWidth";
 import { getSubscriptionData } from "../../youtube";
 
 export default function Subscriptions() {
@@ -15,17 +15,18 @@ export default function Subscriptions() {
   useEffect(() => {
     getSubscriptions();
   }, []);
+  const isMobileView = useWindowWidth() < 1290;
 
   return (
     <MainTemplate>
-      {!windowWidth && (
+      {!isMobileView && (
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       )}
 
-      <section className={classNames(windowWidth ? "" : "mx-32", "py-12")}>
+      <section className={classNames(isMobileView ? "" : "mx-32", "py-12")}>
         <h1
           className={classNames(
-            windowWidth ? "flex justify-center" : "ml-24",
+            isMobileView ? "flex justify-center" : "ml-24",
             "text-4xl my-12 text-white"
           )}
         >
@@ -33,7 +34,7 @@ export default function Subscriptions() {
         </h1>
         <div
           className={classNames(
-            windowWidth ? "flex-col items-center" : "mx-32",
+            isMobileView ? "flex-col items-center" : "mx-32",
             "flex flex-wrap my-12 gap-4"
           )}
         >

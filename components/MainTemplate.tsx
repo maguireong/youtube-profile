@@ -8,8 +8,8 @@ import { useShowPageTransitionLoader } from "../pageTransitions";
 import { Spinner as BluePrintSpinner } from "@blueprintjs/core";
 import { SidePanel } from "./SidePanel";
 import classNames from "classnames";
-import { windowWidth } from "../configs";
 import { BottomPanel } from "./BottomPanel";
+import { useWindowWidth } from "../useWindowWidth";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -43,6 +43,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
   ];
   const currentTab = tabs.find((tab) => tab.link.includes(pathname));
   const showPageTransitionLoader = useShowPageTransitionLoader();
+  const isMobileView = useWindowWidth() < 1290;
   return (
     <>
       <Head>
@@ -51,7 +52,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
       </Head>
 
       <main className="-mb-8 bg-youtubeBlack">
-        {!windowWidth && <SidePanel tabs={tabs} currentTab={currentTab} />}
+        {!isMobileView && <SidePanel tabs={tabs} currentTab={currentTab} />}
         {showPageTransitionLoader ? (
           <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
             <BluePrintSpinner className="text-youtubeRed" />
@@ -59,10 +60,12 @@ export function MainTemplate({ children }: { children: ReactNode }) {
           </div>
         ) : (
           <>
-            <div className={classNames(windowWidth ? "" : "ml-32")}>
+            <div className={classNames(isMobileView ? "" : "ml-32")}>
               {children}
             </div>
-            {windowWidth && <BottomPanel tabs={tabs} currentTab={currentTab} />}
+            {isMobileView && (
+              <BottomPanel tabs={tabs} currentTab={currentTab} />
+            )}
           </>
         )}
       </main>

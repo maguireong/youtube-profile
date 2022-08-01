@@ -9,4 +9,3 @@ export const PORT = "3000";
 export const BASE_URL = isDevelopment
   ? "http://localhost:3000"
   : "https://youtube-profile.herokuapp.com";
-export const windowWidth = true;

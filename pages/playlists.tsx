@@ -1,11 +1,12 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { ClickArea, MainTemplate, TopBar } from "../components";
-import { windowWidth } from "../configs";
+import { MainTemplate, TopBar, ClickArea } from "../components";
 import { Playlist } from "../model";
+import { useWindowWidth } from "../useWindowWidth";
 import { getPlaylistData } from "../youtube";
 
 export default function Playlists() {
+  const isMobileView = useWindowWidth() < 1290;
   const [playlists, setPlaylists] = useState<Playlist[]>();
   const [searchTerm, setSearchTerm] = useState("");
   const getPlaylists = async () => {
@@ -19,16 +20,16 @@ export default function Playlists() {
   return (
     <MainTemplate>
       <main className={searchTerm && "h-screen"}>
-        {!windowWidth && (
+        {!isMobileView && (
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         )}
 
         <section
-          className={classNames(windowWidth ? "mx-8 pb-12" : "mx-32", "py-12")}
+          className={classNames(isMobileView ? "mx-8 pb-12" : "mx-32", "py-12")}
         >
           <h1
             className={classNames(
-              windowWidth ? "flex justify-center" : "",
+              isMobileView ? "flex justify-center" : "",
               "text-4xl my-12 text-white"
             )}
           >
