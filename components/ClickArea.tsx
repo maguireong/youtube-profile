@@ -27,6 +27,7 @@ export function ClickArea({ className, click, children }: Click) {
     <a
       className={classNames(className, "ease-in-out duration-200")}
       href={click}
+      rel="noreferrer"
       target={isDevelopment ? "_blank" : "_self"}
     >
       {children}

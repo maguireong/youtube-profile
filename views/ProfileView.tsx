@@ -66,7 +66,7 @@ function UserProfile({
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center mt-20">
       <img
-        alt="Profile picture"
+        alt="Profile dp"
         className="w-40 rounded-full"
         src={user?.picture ?? ""}
       />

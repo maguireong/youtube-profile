@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import { BsGithub } from "react-icons/bs";
+import { FaYoutube } from "react-icons/fa";
 import { ClickArea } from "./ClickArea";
 
 type TabType = {
@@ -28,14 +30,21 @@ export function SidePanel(props: SidePanelProps) {
 
   return (
     <div className="flex flex-col bg-black fixed h-screen justify-center">
+      <ClickArea
+        className="flex w-full "
+        click="https://github.com/maguireong/youtube-profile"
+      >
+        <FaYoutube className="top-8 absolute left-12 hover:cursor-pointer hover:text-white ease-in-out duration-200 flex justify-center items-center text-4xl text-youtubeRed" />
+      </ClickArea>
       {tabs.map((tab) => (
         <ClickArea
           key={tab.title}
           click={() => goToTab(tab.link)}
           className={classNames(
-            currentTab?.title === tab.title && "border-red-600",
-            currentTab?.title !== tab.title && "border-black",
-            "hover:bg-gray-800 hover:border-red-600",
+            currentTab?.title === tab.title
+              ? "border-red-600"
+              : "border-black opacity-50",
+            "hover:bg-gray-800 hover:border-red-600 hover:opacity-100",
             "flex font-light text-white flex-col border-l-4 p-4 items-center"
           )}
         >
@@ -43,6 +52,12 @@ export function SidePanel(props: SidePanelProps) {
           <span className="text-sm">{tab.title}</span>
         </ClickArea>
       ))}
+      <ClickArea
+        className="flex w-full "
+        click="https://github.com/maguireong/youtube-profile"
+      >
+        <BsGithub className="bottom-8 absolute left-12 hover:cursor-pointer hover:text-purple-300 ease-in-out duration-200 flex justify-center items-center text-4xl text-white" />
+      </ClickArea>
     </div>
   );
 }

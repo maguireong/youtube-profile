@@ -36,7 +36,7 @@ export function TopBar({ searchTerm, setSearchTerm }: TopBarProps) {
         value={searchTerm}
       />
       <img
-        alt="User picture"
+        alt="User dp"
         className="rounded-full w-12"
         src={user?.picture ?? ""}
       />
