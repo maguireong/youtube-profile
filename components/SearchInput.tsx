@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 export function SearchInput(props: {
   onChange: (value: string) => void;
   value: string;
@@ -8,10 +10,10 @@ export function SearchInput(props: {
   return (
     <input
       placeholder={placeholder}
-      className={className}
+      className={classNames("ring-0 border-none outline-0", className)}
       value={value}
       type="search"
-      onChange={(search) => onChange(search.target.value ?? "")}
-    ></input>
+      onChange={(e) => onChange(e.currentTarget.value)}
+    />
   );
 }

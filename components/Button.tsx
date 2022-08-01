@@ -1,6 +1,6 @@
-import { Button as BluePrintButton } from "@blueprintjs/core";
 import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
+import { ClickArea } from "./ClickArea";
 
 const kindStyles = {
   login: <FcGoogle size="25px" />,
@@ -10,7 +10,7 @@ type Kind = keyof typeof kindStyles;
 
 type ButtonProps = {
   text?: string;
-  click: (() => void) | string;
+  click: string | (() => void);
   className?: string;
   kind?: Kind;
 };
@@ -32,10 +32,14 @@ export function Button(props: ButtonProps) {
   const kindIcon = kind ? kindStyles[kind] : null;
 
   return (
-    <BluePrintButton className={className} onClick={onClick}>
-      <div className="flex w-fit gap-2">
-        <div>{kindIcon}</div> {text}
-      </div>
-    </BluePrintButton>
+    <ClickArea className={className} click={onClick}>
+      {kindIcon ? (
+        <div className="flex ease-in-out duration-200 w-fit gap-2">
+          <div>{kindIcon}</div> {text}
+        </div>
+      ) : (
+        text
+      )}
+    </ClickArea>
   );
 }

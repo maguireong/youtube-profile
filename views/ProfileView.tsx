@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
-import { MainTemplate, TopBar, Button, ClickArea } from "../components";
+import { MainTemplate, Button, ClickArea } from "../components";
 import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
 import { getVideoData, getSubscriptionData } from "../youtube";
@@ -37,8 +37,7 @@ export function ProfileView() {
 
   return (
     <MainTemplate>
-      <section className="flex ml-28 flex-col">
-        <TopBar />
+      <section className="flex ml-32 flex-col">
         <UserProfile user={user} videos={videos} subs={subs} />
         <BasicInfo videos={videos} subs={subs} />
       </section>
@@ -57,7 +56,11 @@ function UserProfile({
 }) {
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center mt-20">
-      <img alt="A" width={200} height={220} src={user?.picture ?? ""} />
+      <img
+        alt="Profile picture"
+        className="w-40 rounded-full"
+        src={user?.picture ?? ""}
+      />
       <h1 className="text-4xl font-medium text-white">
         {user?.name ?? "Maguire Ong"}
       </h1>
@@ -82,7 +85,7 @@ function UserProfile({
         </div>
       </section>
       <Button
-        className="rounded-full font-semibold  px-6 py-3 text-white bg-youtubeRed"
+        className="rounded-full font-semibold hover:text-youtubeRed my-4 hover:bg-white px-6 py-3 text-white bg-youtubeRed"
         click={() => logout()}
         text="Logout"
       />
@@ -97,20 +100,19 @@ function BasicInfo({
   videos?: Video[];
   subs?: Subscription[];
 }) {
+  const seeMoreCss =
+    "border-2 hover:bg-white hover:text-black border-white rounded-full py-1.5 px-5 font-medium text-base";
+
   return (
-    <main className="ml-52 mr-24 my-12">
+    <main className="my-12 mx-24">
       <div className="flex space-x-24 justify-between">
         <div className="text-white w-1/2 flex flex-col space-y-4">
           <h1 className="flex justify-between items-center">
             <div className="text-2xl font-semibold">Top Likes</div>
-            <Button
-              text="SEE MORE"
-              click="/likes"
-              className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
-            />
+            <Button text="SEE MORE" click="/likes" className={seeMoreCss} />
           </h1>
 
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-8">
             {videos?.slice(0, 5).map((video) => (
               <ClickArea
                 click={`https://www.youtube.com/watch?v=${encodeURIComponent(
@@ -125,10 +127,16 @@ function BasicInfo({
                   height={video.thumbnail.height}
                   width={video.thumbnail.width}
                 />
-                <div className="font-semibold text-white">{video.title}</div>
-                <div className=" text-white flex space-x-2">
-                  <h1 className="font-semibold">{video.creatorName}</h1>
-                  <div>{video.statistics.likeCount} likes</div>
+                <div className="flex flex-col justify-start text-left">
+                  <div className="font-semibold text-left text-white">
+                    {video.title}
+                  </div>
+                  <div className="text-white">
+                    <h1 className="font-semibold">{video.creatorName}</h1>
+                    <div>
+                      {numeral(video.statistics.likeCount).format("0 a")} likes
+                    </div>
+                  </div>
                 </div>
               </ClickArea>
             ))}
@@ -140,7 +148,7 @@ function BasicInfo({
             <Button
               text="SEE MORE"
               click="/subscriptions"
-              className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
+              className={seeMoreCss}
             />
           </div>
 
@@ -156,6 +164,7 @@ function BasicInfo({
                   <div className="flex items-center space-x-2">
                     <img
                       alt="Subscription thumbnail"
+                      className="rounded-full"
                       src={thumbnail.url}
                       height={thumbnail.height}
                       width={thumbnail.width}

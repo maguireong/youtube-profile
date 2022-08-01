@@ -17,17 +17,17 @@ export default function Explore() {
   }, []);
   return (
     <MainTemplate>
-      <main className={classNames("ml-28", searchTerm && "h-screen")}>
+      <main className={classNames(searchTerm && "h-screen")}>
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <h1 className="text-4xl ml-12 mt-12 text-white">
-          Your Top Suggested Videos
-        </h1>
-        <div className="m-8">
-          {videos === "loading" ? (
-            <div className="flex flex-col items-center br4-skeleton"></div>
-          ) : videos ? (
-            <div className="flex flex-wrap gap-4">
-              {videos
+        <section className="mx-32 py-12">
+          <h1 className="text-4xl my-12 ml-24 text-white">
+            Your Top Suggested Videos
+          </h1>
+          <div className="flex flex-wrap gap-4 justify-center items-start">
+            {videos === "loading" ? (
+              <div className="flex flex-col br4-skeleton"></div>
+            ) : videos ? (
+              videos
                 .filter((video) =>
                   video.title.toLowerCase().includes(searchTerm.toLowerCase())
                 )
@@ -47,22 +47,21 @@ export default function Explore() {
                         height={video.thumbnail.height}
                         width={video.thumbnail.width}
                       />
-                      <div className="font-semibold text-white">
-                        {video.title}
-                      </div>
-                      <div className=" text-white">
-                        <h1 className="font-semibold">{video.creatorName}</h1>
-
-                        <div>{datePublished}</div>
+                      <div className="flex flex-col text-left font-semibold text-white items-start">
+                        <div>{video.title}</div>
+                        <h1>{video.creatorName}</h1>
+                        <div className="font-light text-sm">
+                          {datePublished}
+                        </div>
                       </div>
                     </ClickArea>
                   );
-                })}
-            </div>
-          ) : (
-            <div>No data found</div>
-          )}
-        </div>
+                })
+            ) : (
+              <div>No data found</div>
+            )}
+          </div>
+        </section>
       </main>
     </MainTemplate>
   );

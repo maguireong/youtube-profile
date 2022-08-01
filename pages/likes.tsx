@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../components";
-import classNames from "classnames";
 import numeral from "numeral";
 import { Video } from "../model";
 import { getVideoData } from "../youtube";
@@ -18,16 +17,16 @@ export default function Likes() {
   }, []);
   return (
     <MainTemplate>
-      <main className={classNames("ml-28", searchTerm && "h-screen")}>
+      <main className={searchTerm && "h-screen"}>
         <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <h1 className="text-4xl ml-12 mt-12 text-white">Your Likes</h1>
+        <section className="mx-32 py-12">
+          <h1 className="text-4xl my-12 ml-24 text-white">Your Likes</h1>
 
-        <div className="m-8">
-          {videos === "loading" ? (
-            <div className="flex flex-col items-center br4-skeleton"></div>
-          ) : videos ? (
-            <div className="flex flex-wrap gap-4">
-              {videos
+          <div className="flex flex-wrap gap-4  ml-24 items-start">
+            {videos === "loading" ? (
+              <div className="flex flex-col items-center br4-skeleton"></div>
+            ) : videos ? (
+              videos
                 .filter((video) =>
                   video.title.toLowerCase().includes(searchTerm.toLowerCase())
                 )
@@ -47,34 +46,39 @@ export default function Likes() {
                         height={video.thumbnail.height}
                         width={video.thumbnail.width}
                       />
-                      <div className="font-semibold text-white">
-                        {video.title}
-                      </div>
-                      <div className=" text-white">
-                        <h1 className="font-semibold">{video.creatorName}</h1>
-                        <div className="space-x-2  flex items-center">
-                          <div>
-                            {numeral(video.statistics.likeCount).format("0 a")}{" "}
-                            likes
+                      <div className="flex text-white flex-col text-left">
+                        <div className="font-semibold">{video.title}</div>
+                        <div className="flex flex-col text-left">
+                          <h1 className="font-semibold">{video.creatorName}</h1>
+                          <div className="space-x-2 flex text-start">
+                            <div>
+                              {numeral(video.statistics.likeCount).format(
+                                "0 a"
+                              )}{" "}
+                              likes
+                            </div>
+                            <div>{video.statistics.commentCount} comments</div>
+                            <div>{video.statistics.favoriteCount} comments</div>
+                            <div>
+                              {numeral(video.statistics.viewCount).format(
+                                "0 a"
+                              )}{" "}
+                              views
+                            </div>
                           </div>
-                          <div>{video.statistics.commentCount} comments</div>
-                          <div>{video.statistics.favoriteCount} comments</div>
-                          <div>
-                            {numeral(video.statistics.viewCount).format("0 a")}{" "}
-                            views
+                          <div className="font-light text-sm">
+                            {datePublished}
                           </div>
                         </div>
-
-                        <div>{datePublished}</div>
                       </div>
                     </ClickArea>
                   );
-                })}
-            </div>
-          ) : (
-            <div>No data found</div>
-          )}
-        </div>
+                })
+            ) : (
+              <div>No data found</div>
+            )}
+          </div>
+        </section>
       </main>
     </MainTemplate>
   );

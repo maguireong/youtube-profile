@@ -56,7 +56,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
             <div>Loading</div>
           </div>
         ) : (
-          children
+          <div className="ml-32">{children}</div>
         )}
       </main>
     </>

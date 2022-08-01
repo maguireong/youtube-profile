@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
-import { FaYoutube } from "react-icons/fa";
 import { User } from "../model";
 import { getUser } from "../server";
 import { SearchInput } from "./SearchInput";
+import { ImYoutube2 } from "react-icons/im";
+import { ClickArea } from "./ClickArea";
 
 type TopBarProps = {
-  searchTerm?: string;
-  setSearchTerm?: (value: string) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
 };
 
-export function TopBar({
-  searchTerm = "",
-  setSearchTerm = () => {},
-}: TopBarProps) {
+export function TopBar({ searchTerm, setSearchTerm }: TopBarProps) {
   const [user, setUser] = useState<User>();
   const getUserData = async () => {
     const data = await getUser();
@@ -28,17 +26,20 @@ export function TopBar({
   }, []);
 
   return (
-    <div className="flex items-center border-b-2 bg-youtubeBlack py-2 px-4 justify-between w-[93vw] ">
-      <div className="flex items-center space-x-2 font-semibold text-white text-base ">
-        <FaYoutube className="text-5xl text-youtubeRed" />
-        <span>Youtube</span>
-      </div>
+    <div className="flex items-center border-b-2 bg-youtubeBlack py-2 px-5 justify-between w-full">
+      <ClickArea click="/">
+        <ImYoutube2 className="text-white" size="72px" />
+      </ClickArea>
       <SearchInput
-        className="text-white rounded w-96 bg-gray-600"
+        className="rounded w-96 h-8 px-2 bg-white "
         onChange={setSearchTerm}
         value={searchTerm}
       />
-      <img alt="User picture" src={user?.picture ?? ""} />
+      <img
+        alt="User picture"
+        className="rounded-full w-12"
+        src={user?.picture ?? ""}
+      />
     </div>
   );
 }

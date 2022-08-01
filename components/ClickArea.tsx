@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
@@ -21,7 +22,10 @@ export function ClickArea({ className, click, children }: Click) {
             { shallow: true }
           );
   return (
-    <button className={className} onClick={onClick}>
+    <button
+      className={classNames(className, "ease-in-out duration-200")}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
