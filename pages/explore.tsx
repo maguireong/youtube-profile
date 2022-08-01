@@ -2,6 +2,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../components";
+import { windowWidth } from "../configs";
 import { PopularVideo } from "../model";
 import { getPopularVideoData } from "../youtube";
 
@@ -18,9 +19,18 @@ export default function Explore() {
   return (
     <MainTemplate>
       <main className={classNames(searchTerm && "h-screen")}>
-        <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <section className="mx-32 py-12">
-          <h1 className="text-4xl my-12 ml-24 text-white">
+        {!windowWidth && (
+          <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        )}
+        <section
+          className={classNames(windowWidth ? "mx-8" : "mx-32", "py-12")}
+        >
+          <h1
+            className={classNames(
+              windowWidth ? "flex text-center" : "ml-24",
+              "text-4xl my-12 text-white"
+            )}
+          >
             Your Top Suggested Videos
           </h1>
           <div className="flex flex-wrap gap-4 justify-center items-start">

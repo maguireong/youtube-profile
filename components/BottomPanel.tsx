@@ -14,7 +14,7 @@ type SidePanelProps = {
   currentTab?: TabType;
 };
 
-export function SidePanel(props: SidePanelProps) {
+export function BottomPanel(props: SidePanelProps) {
   const { tabs, currentTab } = props;
   const router = useRouter();
   const goToTab = (link: string) =>
@@ -27,7 +27,7 @@ export function SidePanel(props: SidePanelProps) {
     );
 
   return (
-    <div className="flex flex-col bg-black fixed h-screen justify-center">
+    <div className="flex fixed bottom-0 bg-black items-center">
       {tabs.map((tab) => (
         <ClickArea
           key={tab.title}
@@ -36,7 +36,7 @@ export function SidePanel(props: SidePanelProps) {
             currentTab?.title === tab.title && "border-red-600",
             currentTab?.title !== tab.title && "border-black",
             "hover:bg-gray-800 hover:border-red-600",
-            "flex font-light text-white flex-col border-l-4 p-4 items-center"
+            "flex font-light text-white flex-col  border-t-4 p-4 items-center"
           )}
         >
           <span className="text-2xl font-light">{tab.icon}</span>

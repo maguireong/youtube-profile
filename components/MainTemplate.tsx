@@ -7,6 +7,9 @@ import Head from "next/head";
 import { useShowPageTransitionLoader } from "../pageTransitions";
 import { Spinner as BluePrintSpinner } from "@blueprintjs/core";
 import { SidePanel } from "./SidePanel";
+import classNames from "classnames";
+import { windowWidth } from "../configs";
+import { BottomPanel } from "./BottomPanel";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -48,15 +51,19 @@ export function MainTemplate({ children }: { children: ReactNode }) {
       </Head>
 
       <main className="-mb-8 bg-youtubeBlack">
-        <SidePanel tabs={tabs} currentTab={currentTab} />
-
+        {!windowWidth && <SidePanel tabs={tabs} currentTab={currentTab} />}
         {showPageTransitionLoader ? (
           <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
             <BluePrintSpinner className="text-youtubeRed" />
             <div>Loading</div>
           </div>
         ) : (
-          <div className="ml-32">{children}</div>
+          <>
+            <div className={classNames(windowWidth ? "" : "ml-32")}>
+              {children}
+            </div>
+            {windowWidth && <BottomPanel tabs={tabs} currentTab={currentTab} />}
+          </>
         )}
       </main>
     </>

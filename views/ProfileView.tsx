@@ -1,7 +1,9 @@
+import classNames from "classnames";
 import dayjs from "dayjs";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
 import { MainTemplate, Button, ClickArea } from "../components";
+import { windowWidth } from "../configs";
 import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
 import { getVideoData, getSubscriptionData } from "../youtube";
@@ -37,7 +39,9 @@ export function ProfileView() {
 
   return (
     <MainTemplate>
-      <section className="flex ml-32 flex-col">
+      <section
+        className={classNames(windowWidth ? "mx-8" : "ml-32", "flex flex-col")}
+      >
         <UserProfile user={user} videos={videos} subs={subs} />
         <BasicInfo videos={videos} subs={subs} />
       </section>
@@ -64,7 +68,12 @@ function UserProfile({
       <h1 className="text-4xl font-medium text-white">
         {user?.name ?? "Maguire Ong"}
       </h1>
-      <section className="flex space-x-8 justify-center">
+      <section
+        className={classNames(
+          windowWidth ? "space-x-3" : "space-x-8",
+          "flex justify-center"
+        )}
+      >
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
           <div className="text-youtubeRed text-2xl">{videos?.length}</div>
           <div className="text-white text-2xl">Likes</div>
@@ -100,13 +109,25 @@ function BasicInfo({
   videos?: Video[];
   subs?: Subscription[];
 }) {
-  const seeMoreCss =
-    "border-2 hover:bg-white hover:text-black border-white rounded-full py-1.5 px-5 font-medium text-base";
+  const seeMoreCss = classNames(
+    windowWidth ? "text-xs" : "text-base",
+    "border-2 hover:bg-white hover:text-black border-white flex items-center rounded-full py-1.5 px-5 font-medium "
+  );
 
   return (
-    <main className="my-12 mx-24">
-      <div className="flex space-x-24 justify-between">
-        <div className="text-white w-1/2 flex flex-col space-y-4">
+    <main className={classNames(windowWidth ? "" : "mx-24", "my-12")}>
+      <div
+        className={classNames(
+          windowWidth ? "flex-col space-y-12" : "space-x-24 justify-between",
+          "flex"
+        )}
+      >
+        <div
+          className={classNames(
+            windowWidth ? "" : "w-1/2",
+            "text-white flex flex-col space-y-4"
+          )}
+        >
           <h1 className="flex justify-between items-center">
             <div className="text-2xl font-semibold">Top Likes</div>
             <Button text="SEE MORE" click="/likes" className={seeMoreCss} />
@@ -142,9 +163,21 @@ function BasicInfo({
             ))}
           </div>
         </div>
-        <div className="text-white w-1/2 flex flex-col space-y-4">
+        <div
+          className={classNames(
+            windowWidth ? "" : "w-1/2",
+            "text-white flex flex-col space-y-4"
+          )}
+        >
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-semibold">Top Subscriptions</h1>
+            <h1
+              className={classNames(
+                windowWidth ? "text-base" : "text-2xl",
+                "font-semibold"
+              )}
+            >
+              Top Subscriptions
+            </h1>
             <Button
               text="SEE MORE"
               click="/subscriptions"
@@ -155,13 +188,33 @@ function BasicInfo({
           <div className="flex flex-col gap-6">
             {subs?.slice(0, 20).map(({ id, subscriptAt, title, thumbnail }) => {
               const dateSubscript = dayjs(subscriptAt).format("DD/MM/YYYY");
-              return (
+              return windowWidth ? (
+                <ClickArea
+                  key={id}
+                  click={`/subscriptions/${encodeURIComponent(id)}`}
+                  className="flex justify-between items-center space-x-2 hover:opacity-50"
+                >
+                  <img
+                    alt="Subscription thumbnail"
+                    className="rounded-full"
+                    src={thumbnail.url}
+                    height={thumbnail.height}
+                    width={thumbnail.width}
+                  />
+                  <section className="flex flex-col text-right space-y-1">
+                    <div className="text-base font-semibold">{title}</div>
+                    <div className="text-xs">
+                      Subscribed at: {dateSubscript}
+                    </div>
+                  </section>
+                </ClickArea>
+              ) : (
                 <ClickArea
                   key={id}
                   click={`/subscriptions/${encodeURIComponent(id)}`}
                   className="flex justify-between items-center hover:opacity-50"
                 >
-                  <div className="flex items-center space-x-2">
+                  <section className="flex items-center space-x-2">
                     <img
                       alt="Subscription thumbnail"
                       className="rounded-full"
@@ -169,9 +222,11 @@ function BasicInfo({
                       height={thumbnail.height}
                       width={thumbnail.width}
                     />
-                    <div className="font-semibold text-lg">{title}</div>
+                    <div className="text-lg font-semibold">{title}</div>
+                  </section>
+                  <div className="text-lg font-semibold">
+                    Subscribed at: {dateSubscript}
                   </div>
-                  <div>Subscribed at: {dateSubscript}</div>
                 </ClickArea>
               );
             })}

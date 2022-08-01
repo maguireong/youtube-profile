@@ -1,5 +1,7 @@
+import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../components";
+import { windowWidth } from "../configs";
 import { Playlist } from "../model";
 import { getPlaylistData } from "../youtube";
 
@@ -17,9 +19,21 @@ export default function Playlists() {
   return (
     <MainTemplate>
       <main className={searchTerm && "h-screen"}>
-        <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <section className="mx-32 py-12">
-          <h1 className="text-4xl my-12 text-white">Your Playlists</h1>
+        {!windowWidth && (
+          <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        )}
+
+        <section
+          className={classNames(windowWidth ? "mx-8" : "mx-32", "py-12")}
+        >
+          <h1
+            className={classNames(
+              windowWidth ? "flex justify-center" : "",
+              "text-4xl my-12 text-white"
+            )}
+          >
+            Your Playlists
+          </h1>
           <div className="flex flex-col pb-12 gap-y-2">
             {playlists?.map((videos) =>
               videos
@@ -33,7 +47,7 @@ export default function Playlists() {
                       click={`https://www.youtube.com/watch?v=${encodeURIComponent(
                         video.id
                       )}&list=${encodeURIComponent(video.playlistId)}`}
-                      className="flex justify-between items-center hover:opacity-50 text-white"
+                      className="flex flex-wrap-reverse space-y-8 justify-between items-center hover:opacity-50 text-white"
                     >
                       <div className="space-y-2 ">
                         <div className="text-2xl">{video.title}</div>

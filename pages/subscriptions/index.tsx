@@ -1,5 +1,7 @@
+import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { ClickArea, MainTemplate, TopBar } from "../../components";
+import { windowWidth } from "../../configs";
 import { Subscription } from "../../model";
 import { getSubscriptionData } from "../../youtube";
 
@@ -16,11 +18,25 @@ export default function Subscriptions() {
 
   return (
     <MainTemplate>
-      <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      {!windowWidth && (
+        <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      )}
 
-      <section className="mx-32 py-12">
-        <h1 className="text-4xl my-12 ml-24 text-white">Your Subscriptions</h1>
-        <div className="flex flex-wrap mx-32 my-12 gap-4">
+      <section className={classNames(windowWidth ? "" : "mx-32", "py-12")}>
+        <h1
+          className={classNames(
+            windowWidth ? "flex justify-center" : "ml-24",
+            "text-4xl my-12 text-white"
+          )}
+        >
+          Your Subscriptions
+        </h1>
+        <div
+          className={classNames(
+            windowWidth ? "flex-col items-center" : "mx-32",
+            "flex flex-wrap my-12 gap-4"
+          )}
+        >
           {subs
             ?.filter((sub) =>
               sub.title.toLowerCase().includes(searchTerm.toLowerCase())

@@ -4,6 +4,8 @@ import { ClickArea, MainTemplate, TopBar } from "../components";
 import numeral from "numeral";
 import { Video } from "../model";
 import { getVideoData } from "../youtube";
+import { windowWidth } from "../configs";
+import classNames from "classnames";
 
 export default function Likes() {
   const [videos, setVideos] = useState<Video[] | "loading">();
@@ -18,11 +20,27 @@ export default function Likes() {
   return (
     <MainTemplate>
       <main className={searchTerm && "h-screen"}>
-        <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <section className="mx-32 py-12">
-          <h1 className="text-4xl my-12 ml-24 text-white">Your Likes</h1>
+        {!windowWidth && (
+          <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        )}
+        <section
+          className={classNames(windowWidth ? "py-6" : "mx-32 py-12", "")}
+        >
+          <h1
+            className={classNames(
+              windowWidth ? "flex justify-center" : "ml-24",
+              "text-4xl my-12 text-white"
+            )}
+          >
+            Your Likes
+          </h1>
 
-          <div className="flex flex-wrap gap-4  ml-24 items-start">
+          <div
+            className={classNames(
+              windowWidth ? "ml-2" : "ml-24",
+              "flex flex-wrap gap-4 items-start"
+            )}
+          >
             {videos === "loading" ? (
               <div className="flex flex-col items-center br4-skeleton"></div>
             ) : videos ? (

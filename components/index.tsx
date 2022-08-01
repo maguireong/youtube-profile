@@ -5,3 +5,4 @@ export * from "./SidePanel";
 export * from "./Topbar";
 export * from "./ClientOnly";
 export * from "./ClickArea";
+export * from "./BottomPanel";
