@@ -104,7 +104,7 @@ function BasicInfo({
   subs?: Subscription[];
 }) {
   return (
-    <main className="ml-52 mr-24 mt-12">
+    <main className="ml-52 mr-24 my-12">
       <div className="flex space-x-24 justify-between">
         <div className="text-white w-1/2 flex flex-col space-y-4">
           <h1 className="flex justify-between items-center">

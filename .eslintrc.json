@@ -1,4 +1,24 @@
 {
   "extends": ["plugin:@denis-sokolov/opinionated"],
-  "plugins": ["@denis-sokolov"]
+  "plugins": ["@denis-sokolov"],
+  "ignorePatterns": ["pages/_app.tsx", "next-env.d.ts"],
+  "rules": {
+    "@denis-sokolov/no-positional-boolean-parameters": "off",
+    "@denis-sokolov/no-imports-down": [
+      "error",
+      {
+        "ignoreRegexes": [
+          // Documented 3rd-party APIs
+          "^dayjs/plugin/relativeTime$",
+          "^fastify/types/[^/]+",
+
+          // Next.js requires us to create a server-specific entry point into modules
+          // https://github.com/vercel/next.js/issues/16153
+          "^[^/]+/[^/]+/server",
+          // Server-specific global directories
+          "^server/(lib|utils)/[^/]+$"
+        ]
+      }
+    ]
+  }
 }

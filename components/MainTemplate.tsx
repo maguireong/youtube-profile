@@ -52,7 +52,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
 
         {showPageTransitionLoader ? (
           <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
-            <CircularProgress className="text-youtubeRed" color="secondary" />
+            <CircularProgress className="text-youtubeRed" />
             <div>Loading</div>
           </div>
         ) : (

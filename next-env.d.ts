@@ -1,6 +1,4 @@
-// eslint-disable-next-line
 /// <reference types="next" />
-// eslint-disable-next-line
 /// <reference types="next/image-types/global" />
 
 // NOTE: This file should not be edited

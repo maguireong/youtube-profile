@@ -33,7 +33,7 @@ const access_token = getCookie("accessToken");
 const refresh_token = getCookie("refreshToken");
 
 export function retrieveAccessToken() {
-  if (access_token) refreshAccessToken();
+  if (!access_token) refreshAccessToken();
   return access_token;
 }
 
