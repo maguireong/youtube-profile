@@ -48,7 +48,10 @@ export function MainTemplate({ children }: { children: ReactNode }) {
     <>
       <Head>
         <title>{currentTab?.title} - Youtube Profile</title>
-        <link rel="icon" href="/youtube.ico" />
+        <link
+          rel="icon"
+          href="https://www.youtube.com/s/desktop/54c586d4/img/favicon.ico"
+        />
       </Head>
 
       <main className="-mb-8 bg-youtubeBlack">
