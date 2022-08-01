@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { Button } from "./Button";
+import { ClickArea } from "./ClickArea";
 
 type TabType = {
   title: string;
@@ -29,7 +29,7 @@ export function SidePanel(props: SidePanelProps) {
   return (
     <div className="flex flex-col bg-black fixed h-screen justify-center">
       {tabs.map((tab) => (
-        <Button
+        <ClickArea
           key={tab.title}
           click={() => goToTab(tab.link)}
           className={classNames(
@@ -41,7 +41,7 @@ export function SidePanel(props: SidePanelProps) {
         >
           <span className="text-2xl font-light">{tab.icon}</span>
           <span className="text-sm">{tab.title}</span>
-        </Button>
+        </ClickArea>
       ))}
     </div>
   );

@@ -1,8 +1,7 @@
-import { Skeleton } from "@mui/material";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Button, MainTemplate, TopBar } from "../components";
+import { ClickArea, MainTemplate, TopBar } from "../components";
 import { PopularVideo } from "../model";
 import { getPopularVideoData } from "../youtube";
 
@@ -25,9 +24,7 @@ export default function Explore() {
         </h1>
         <div className="m-8">
           {videos === "loading" ? (
-            <div className="flex flex-col items-center ">
-              <Skeleton variant="rectangular" width={210} height={118} />
-            </div>
+            <div className="flex flex-col items-center br4-skeleton"></div>
           ) : videos ? (
             <div className="flex flex-wrap gap-4">
               {videos
@@ -37,11 +34,11 @@ export default function Explore() {
                 .map((video) => {
                   const datePublished = dayjs(video.publishedAt).fromNow();
                   return (
-                    <Button
-                      link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                    <ClickArea
+                      key={video.id}
+                      click={`https://www.youtube.com/watch?v=${encodeURIComponent(
                         video.id
                       )}`}
-                      key={video.id}
                       className="w-96 space-y-2 hover:opacity-50"
                     >
                       <img
@@ -58,7 +55,7 @@ export default function Explore() {
 
                         <div>{datePublished}</div>
                       </div>
-                    </Button>
+                    </ClickArea>
                   );
                 })}
             </div>

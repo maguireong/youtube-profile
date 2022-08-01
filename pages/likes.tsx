@@ -1,7 +1,6 @@
-import { Skeleton } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Button, MainTemplate, TopBar } from "../components";
+import { ClickArea, MainTemplate, TopBar } from "../components";
 import classNames from "classnames";
 import numeral from "numeral";
 import { Video } from "../model";
@@ -25,9 +24,7 @@ export default function Likes() {
 
         <div className="m-8">
           {videos === "loading" ? (
-            <div className="flex flex-col items-center ">
-              <Skeleton variant="rectangular" width={210} height={118} />
-            </div>
+            <div className="flex flex-col items-center br4-skeleton"></div>
           ) : videos ? (
             <div className="flex flex-wrap gap-4">
               {videos
@@ -37,8 +34,8 @@ export default function Likes() {
                 .map((video) => {
                   const datePublished = dayjs(video.publishedAt).fromNow();
                   return (
-                    <Button
-                      link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                    <ClickArea
+                      click={`https://www.youtube.com/watch?v=${encodeURIComponent(
                         video.id
                       )}`}
                       key={video.id}
@@ -70,7 +67,7 @@ export default function Likes() {
 
                         <div>{datePublished}</div>
                       </div>
-                    </Button>
+                    </ClickArea>
                   );
                 })}
             </div>

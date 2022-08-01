@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { Button, MainTemplate, TopBar } from "../../components";
+import { ClickArea, MainTemplate, TopBar } from "../../components";
 import { Subscription } from "../../model";
 import { getSubscriptionData } from "../../youtube";
 
@@ -29,9 +29,9 @@ export default function Subscriptions() {
                 sub.title.toLowerCase().includes(searchTerm.toLowerCase())
               )
               .map(({ id, title, thumbnail }) => (
-                <Button
+                <ClickArea
                   key={id}
-                  link={`/subscriptions/${encodeURIComponent(id)}`}
+                  click={`/subscriptions/${encodeURIComponent(id)}`}
                   className="flex hover:opacity-50 items-center m-1 w-48 rounded flex-col gap-y-2"
                 >
                   <img
@@ -43,7 +43,7 @@ export default function Subscriptions() {
                   <div className="font-semibold text-lg text-gray-400">
                     {title}
                   </div>
-                </Button>
+                </ClickArea>
               ))}
           </section>
         </div>

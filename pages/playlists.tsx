@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { Button, MainTemplate, TopBar } from "../components";
+import { ClickArea, MainTemplate, TopBar } from "../components";
 import { Playlist } from "../model";
 import { getPlaylistData } from "../youtube";
 
@@ -28,9 +28,9 @@ export default function Playlists() {
               )
               .map((video) => {
                 return (
-                  <Button
+                  <ClickArea
                     key={video.id}
-                    link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+                    click={`https://www.youtube.com/watch?v=${encodeURIComponent(
                       video.id
                     )}&list=${encodeURIComponent(video.playlistId)}`}
                     className="flex justify-between items-center hover:opacity-50 text-white"
@@ -45,7 +45,7 @@ export default function Playlists() {
                       height={video.thumbnail.height}
                       width={video.thumbnail.width}
                     />
-                  </Button>
+                  </ClickArea>
                 );
               })
           )}

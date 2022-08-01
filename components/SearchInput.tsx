@@ -1,5 +1,3 @@
-import { TextField } from "@mui/material";
-
 export function SearchInput(props: {
   onChange: (value: string) => void;
   value: string;
@@ -8,12 +6,12 @@ export function SearchInput(props: {
 }) {
   const { className, onChange, value, placeholder = "Search" } = props;
   return (
-    <TextField
+    <input
       placeholder={placeholder}
       className={className}
       value={value}
-      size="small"
+      type="search"
       onChange={(search) => onChange(search.target.value ?? "")}
-    />
+    ></input>
   );
 }

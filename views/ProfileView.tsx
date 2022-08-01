@@ -1,8 +1,7 @@
-import { Avatar } from "@mui/material";
 import dayjs from "dayjs";
 import numeral from "numeral";
 import { useEffect, useState } from "react";
-import { MainTemplate, TopBar, Button } from "../components";
+import { MainTemplate, TopBar, Button, ClickArea } from "../components";
 import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
 import { getVideoData, getSubscriptionData } from "../youtube";
@@ -58,11 +57,7 @@ function UserProfile({
 }) {
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center mt-20">
-      <Avatar
-        alt="A"
-        sx={{ width: 220, height: 220 }}
-        src={user?.picture ?? ""}
-      />
+      <img alt="A" width={200} height={220} src={user?.picture ?? ""} />
       <h1 className="text-4xl font-medium text-white">
         {user?.name ?? "Maguire Ong"}
       </h1>
@@ -89,9 +84,8 @@ function UserProfile({
       <Button
         className="rounded-full font-semibold  px-6 py-3 text-white bg-youtubeRed"
         click={() => logout()}
-      >
-        Logout
-      </Button>
+        text="Logout"
+      />
     </div>
   );
 }
@@ -111,15 +105,15 @@ function BasicInfo({
             <div className="text-2xl font-semibold">Top Likes</div>
             <Button
               text="SEE MORE"
-              link="/likes"
+              click="/likes"
               className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
             />
           </h1>
 
           <div className="flex flex-col space-y-4">
             {videos?.slice(0, 5).map((video) => (
-              <Button
-                link={`https://www.youtube.com/watch?v=${encodeURIComponent(
+              <ClickArea
+                click={`https://www.youtube.com/watch?v=${encodeURIComponent(
                   video.id
                 )}`}
                 key={video.id}
@@ -136,7 +130,7 @@ function BasicInfo({
                   <h1 className="font-semibold">{video.creatorName}</h1>
                   <div>{video.statistics.likeCount} likes</div>
                 </div>
-              </Button>
+              </ClickArea>
             ))}
           </div>
         </div>
@@ -145,7 +139,7 @@ function BasicInfo({
             <h1 className="text-2xl font-semibold">Top Subscriptions</h1>
             <Button
               text="SEE MORE"
-              link="/subscriptions"
+              click="/subscriptions"
               className="border-2 hover:bg-white hover:text-black border-white rounded-full py-3 px-5 font-medium text-xl "
             />
           </div>
@@ -154,9 +148,9 @@ function BasicInfo({
             {subs?.slice(0, 20).map(({ id, subscriptAt, title, thumbnail }) => {
               const dateSubscript = dayjs(subscriptAt).format("DD/MM/YYYY");
               return (
-                <Button
+                <ClickArea
                   key={id}
-                  link={`/subscriptions/${encodeURIComponent(id)}`}
+                  click={`/subscriptions/${encodeURIComponent(id)}`}
                   className="flex justify-between items-center hover:opacity-50"
                 >
                   <div className="flex items-center space-x-2">
@@ -169,7 +163,7 @@ function BasicInfo({
                     <div className="font-semibold text-lg">{title}</div>
                   </div>
                   <div>Subscribed at: {dateSubscript}</div>
-                </Button>
+                </ClickArea>
               );
             })}
           </div>

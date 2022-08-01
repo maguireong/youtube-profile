@@ -1,27 +1,41 @@
-import { ReactNode } from "react";
+import { Button as BluePrintButton } from "@blueprintjs/core";
+import { useRouter } from "next/router";
+import { FcGoogle } from "react-icons/fc";
+
+const kindStyles = {
+  login: <FcGoogle size="25px" />,
+};
+
+type Kind = keyof typeof kindStyles;
 
 type ButtonProps = {
   text?: string;
-  prependIcon?: ReactNode;
-  link?: string;
-  click?: () => void;
+  click: (() => void) | string;
   className?: string;
-  children?: ReactNode;
+  kind?: Kind;
 };
 
 export function Button(props: ButtonProps) {
-  const { text, link, prependIcon, click, className, children } = props;
-  return link ? (
-    <a className={className} href={link}>
-      {children ?? text}
-    </a>
-  ) : (
-    <button className={className} onClick={click}>
-      {children ?? (
-        <div className="flex w-fit space-x-2">
-          {prependIcon} {text}
-        </div>
-      )}
-    </button>
+  const { text, kind, click, className } = props;
+  const router = useRouter();
+  const onClick =
+    typeof click === "function"
+      ? click
+      : () =>
+          router.push(
+            {
+              pathname: click,
+            },
+            undefined,
+            { shallow: true }
+          );
+  const kindIcon = kind ? kindStyles[kind] : null;
+
+  return (
+    <BluePrintButton className={className} onClick={onClick}>
+      <div className="flex w-fit gap-2">
+        <div>{kindIcon}</div> {text}
+      </div>
+    </BluePrintButton>
   );
 }

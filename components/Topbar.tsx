@@ -1,4 +1,3 @@
-import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { FaYoutube } from "react-icons/fa";
 import { User } from "../model";
@@ -39,7 +38,7 @@ export function TopBar({
         onChange={setSearchTerm}
         value={searchTerm}
       />
-      <Avatar alt="Remy Sharp" src={user?.picture ?? ""} />
+      <img alt="User picture" src={user?.picture ?? ""} />
     </div>
   );
 }

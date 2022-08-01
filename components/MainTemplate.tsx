@@ -5,7 +5,7 @@ import { MdVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useShowPageTransitionLoader } from "../pageTransitions";
-import { CircularProgress } from "@mui/material";
+import { Spinner as BluePrintSpinner } from "@blueprintjs/core";
 import { SidePanel } from "./SidePanel";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
@@ -52,7 +52,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
 
         {showPageTransitionLoader ? (
           <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
-            <CircularProgress className="text-youtubeRed" />
+            <BluePrintSpinner className="text-youtubeRed" />
             <div>Loading</div>
           </div>
         ) : (
