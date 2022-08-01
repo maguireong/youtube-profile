@@ -23,9 +23,7 @@ export default function Likes() {
         {!windowWidth && (
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         )}
-        <section
-          className={classNames(windowWidth ? "py-6" : "mx-32 py-12", "")}
-        >
+        <section className={windowWidth ? "pt-12 pb-28 mx-8" : "mx-32 py-12"}>
           <h1
             className={classNames(
               windowWidth ? "flex justify-center" : "ml-24",

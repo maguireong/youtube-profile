@@ -24,7 +24,7 @@ export default function Playlists() {
         )}
 
         <section
-          className={classNames(windowWidth ? "mx-8" : "mx-32", "py-12")}
+          className={classNames(windowWidth ? "mx-8 pb-12" : "mx-32", "py-12")}
         >
           <h1
             className={classNames(

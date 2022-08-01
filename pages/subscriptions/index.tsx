@@ -54,7 +54,7 @@ export default function Subscriptions() {
                   height="60%"
                   width="60%"
                 />
-                <div className="font-semibold text-lg text-gray-400">
+                <div className="font-semibold text-lg text-center text-gray-400">
                   {title}
                 </div>
               </ClickArea>

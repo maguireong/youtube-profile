@@ -40,7 +40,10 @@ export function ProfileView() {
   return (
     <MainTemplate>
       <section
-        className={classNames(windowWidth ? "mx-8" : "ml-32", "flex flex-col")}
+        className={classNames(
+          windowWidth ? "mx-8 pb-12" : "ml-32",
+          "flex flex-col"
+        )}
       >
         <UserProfile user={user} videos={videos} subs={subs} />
         <BasicInfo videos={videos} subs={subs} />
@@ -111,7 +114,7 @@ function BasicInfo({
 }) {
   const seeMoreCss = classNames(
     windowWidth ? "text-xs" : "text-base",
-    "border-2 hover:bg-white hover:text-black border-white flex items-center rounded-full py-1.5 px-5 font-medium "
+    "border-2 hover:bg-white hover:text-black border-white flex items-center rounded-full py-1.5 px-5 font-medium"
   );
 
   return (
@@ -129,7 +132,14 @@ function BasicInfo({
           )}
         >
           <h1 className="flex justify-between items-center">
-            <div className="text-2xl font-semibold">Top Likes</div>
+            <div
+              className={classNames(
+                windowWidth ? "text-base" : "text-2xl",
+                "font-semibold"
+              )}
+            >
+              Top Likes
+            </div>
             <Button text="SEE MORE" click="/likes" className={seeMoreCss} />
           </h1>
 
