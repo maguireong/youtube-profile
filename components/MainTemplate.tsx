@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { FaCompass, FaThumbsUp } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
-import { MdVideoLibrary, MdSubscriptions } from "react-icons/md";
+import { MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useShowPageTransitionLoader } from "../pageTransitions";
@@ -35,11 +35,11 @@ export function MainTemplate({ children }: { children: ReactNode }) {
       icon: <FaCompass />,
       link: "/explore",
     },
-    {
-      title: "Playlists",
-      icon: <MdVideoLibrary />,
-      link: "/playlists",
-    },
+    // {
+    //   title: "Playlists",
+    //   icon: <MdVideoLibrary />,
+    //   link: "/playlists",
+    // },
   ];
   const currentTab = tabs.find((tab) => tab.link.includes(pathname));
   const showPageTransitionLoader = useShowPageTransitionLoader();
