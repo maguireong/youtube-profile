@@ -47,7 +47,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
-        <title>{currentTab?.title} - Youtube Profile</title>
+        <title>Youtube Profile</title>
         <link
           rel="icon"
           href="https://www.youtube.com/s/desktop/54c586d4/img/favicon.ico"
