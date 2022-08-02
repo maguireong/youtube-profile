@@ -3,6 +3,7 @@
   "plugins": ["@denis-sokolov"],
   "ignorePatterns": ["pages/_app.tsx", "next-env.d.ts"],
   "rules": {
+    "triple-equals": true,
     "@denis-sokolov/no-positional-boolean-parameters": "off",
     "@denis-sokolov/no-imports-down": [
       "error",

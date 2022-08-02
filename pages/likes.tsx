@@ -41,7 +41,7 @@ export default function Likes() {
               "flex flex-wrap gap-4 items-start"
             )}
           >
-            {videos == "loading" ? (
+            {videos === "loading" ? (
               <LikesShimmer />
             ) : videos ? (
               videos
