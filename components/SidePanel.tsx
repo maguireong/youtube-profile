@@ -30,10 +30,7 @@ export function SidePanel(props: SidePanelProps) {
 
   return (
     <div className="flex flex-col bg-black fixed h-screen justify-center">
-      <ClickArea
-        className="flex w-full "
-        click="https://github.com/maguireong/youtube-profile"
-      >
+      <ClickArea className="flex w-full" click="/">
         <FaYoutube
           size="40"
           className="top-8 absolute left-11 hover:cursor-pointer hover:text-white ease-in-out duration-200 flex justify-center items-center text-4xl text-youtubeRed"
@@ -56,7 +53,7 @@ export function SidePanel(props: SidePanelProps) {
         </ClickArea>
       ))}
       <ClickArea
-        className="flex w-full "
+        className="flex w-full"
         click="https://github.com/maguireong/youtube-profile"
       >
         <BsGithub className="bottom-8 absolute left-11 hover:cursor-pointer hover:text-purple-300 ease-in-out duration-200 flex justify-center items-center text-4xl text-white" />

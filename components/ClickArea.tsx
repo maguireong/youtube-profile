@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { isDevelopment } from "../configs";
 
 type Click = {
   click: (() => void) | string;
@@ -28,7 +27,6 @@ export function ClickArea({ className, click, children }: Click) {
       className={classNames(className, "ease-in-out duration-200")}
       href={click}
       rel="noreferrer"
-      target={isDevelopment ? "_blank" : "_self"}
     >
       {children}
     </a>
