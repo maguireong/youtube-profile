@@ -1,21 +1,44 @@
-# Next.js + Tailwind CSS Example
+# Youtube Profile
+> Special shout out to Brittany and her awesome [Spotify Profile](https://spotify-profile.herokuapp.com/) which provided me with the inspiration to create this
+> A web app for visualizing personalized Youtube data
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Built with a bunch of things, but to name a few:
 
-## Deploy your own
+- [Youtube Web API](https://developers.google.com/youtube/v3)
+- [Create React App](https://github.com/facebook/create-react-app)
+- [NextJS](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Setup
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+1. [Register a Youtube App](https://console.cloud.google.com/apis/dashboard) and add `http://localhost:3000/api/callback` as a Redirect URI in the app settings
+1. Create an `.env` file in the root of the project based on `example.env`
+1. `yarn install`
+1. `yarn run dev`
 
-## How to use
+## Deploying to Heroku
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+1. Create new heroku app
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
+   ```bash
+   heroku create app-name
+   ```
+
+2. Set Heroku environment variables
+
+   ```bash
+   heroku config:set CLIENT_ID=XXXXX
+   heroku config:set CLIENT_SECRET=XXXXX
+   heroku config:set REDIRECT_URI=https://app-name.herokuapp.com/callback
+   heroku config:set FRONTEND_URI=https://app-name.herokuapp.com
+   ```
+
+3. Push to Heroku
+
+   ```bash
+   git push heroku master
+   ```
+
+4. Add `http://app-name.herokuapp.com/api/callback` as a Redirect URI in the youtube application settings
+
+5. Once the app is live on Heroku, hitting http://app-name.herokuapp.com should be the same as hitting http://localhost:3000
