@@ -80,11 +80,11 @@ function UserProfile({
         )}
       >
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
-          <div className="text-youtubeRed text-2xl">{videos?.length}</div>
+          <div className="text-youtubeRed text-2xl">{videos?.length ?? 0}</div>
           <div className="text-white text-2xl">Likes</div>
         </div>
         <div className="flex font-semibold flex-col justify-center items-center gap-1">
-          <div className="text-youtubeRed text-2xl">{subs?.length}</div>
+          <div className="text-youtubeRed text-2xl">{subs?.length ?? 0}</div>
           <div className="text-white text-2xl">Subscriptions</div>
         </div>
         <div className="flex font-semibold flex-col justify-center items-center gap-1">

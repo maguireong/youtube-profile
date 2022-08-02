@@ -26,6 +26,7 @@
     "@types/numeral": "^2.0.2",
     "@types/react-query": "^1.2.9",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "classnames": "^2.3.1",
     "cookie": "^0.5.0",
     "cookies-next": "^2.1.1",

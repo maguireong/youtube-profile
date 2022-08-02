@@ -5,11 +5,11 @@ import { MdVideoLibrary, MdSubscriptions } from "react-icons/md";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useShowPageTransitionLoader } from "../pageTransitions";
-import { Spinner as BluePrintSpinner } from "@blueprintjs/core";
 import { SidePanel } from "./SidePanel";
 import classNames from "classnames";
 import { BottomPanel } from "./BottomPanel";
 import { useWindowWidth } from "../useWindowWidth";
+import { Spinner } from "./Spinner";
 
 export function MainTemplate({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -54,12 +54,11 @@ export function MainTemplate({ children }: { children: ReactNode }) {
         />
       </Head>
 
-      <main className="-mb-8 bg-youtubeBlack">
+      <main className="-mb-8 font-sans bg-youtubeBlack">
         {!isMobileView && <SidePanel tabs={tabs} currentTab={currentTab} />}
         {showPageTransitionLoader ? (
-          <div className="flex space-x-2 text-youtubeRed h-screen w-full items-center justify-center">
-            <BluePrintSpinner className="text-youtubeRed" />
-            <div>Loading</div>
+          <div className="flex h-screen w-full items-center justify-center">
+            <Spinner />
           </div>
         ) : (
           <>

@@ -1009,6 +1009,11 @@ body-parser@1.20.0:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
+bootstrap@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.0.tgz#838727fb60f1630db370fe57c63cbcf2962bb3d3"
+  integrity sha512-qlnS9GL6YZE6Wnef46GxGv1UpGGzAwO0aPL1yOjzDIJpeApeMvqV24iL+pjr2kU4dduoBA9fINKWKgMToobx9A==
+
 bossy@3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/bossy/-/bossy-3.0.4.tgz#f9ae9f26e81b41a318f4ee0d83686e4a5c2507b9"

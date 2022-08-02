@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MainTemplate } from "../../components";
 import { Subscription } from "../../model";
-import { SubscriptionDetailView } from "../../views";
+import { EmptyVideoPage, SubscriptionDetailView } from "../../views";
 import { getSubscriptionData } from "../../youtube";
 
 export default function SubscriptionDetail() {
@@ -26,7 +26,7 @@ export default function SubscriptionDetail() {
         ) : sub ? (
           <SubscriptionDetailView subscription={sub} />
         ) : (
-          <div>No data found</div>
+          <EmptyVideoPage />
         )}
       </div>
     </MainTemplate>

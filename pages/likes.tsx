@@ -1,11 +1,12 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { ClickArea, MainTemplate, TopBar } from "../components";
+import { ClickArea, MainTemplate, Shimmer, TopBar } from "../components";
 import numeral from "numeral";
 import { Video } from "../model";
 import { getVideoData } from "../youtube";
 import classNames from "classnames";
 import { useWindowWidth } from "../useWindowWidth";
+import { EmptyVideoPage } from "../views";
 
 export default function Likes() {
   const isMobileView = useWindowWidth() < 1290;
@@ -40,8 +41,8 @@ export default function Likes() {
               "flex flex-wrap gap-4 items-start"
             )}
           >
-            {videos === "loading" ? (
-              <div className="flex flex-col items-center br4-skeleton"></div>
+            {videos == "loading" ? (
+              <LikesShimmer />
             ) : videos ? (
               videos
                 .filter((video) =>
@@ -92,11 +93,30 @@ export default function Likes() {
                   );
                 })
             ) : (
-              <div>No data found</div>
+              <EmptyVideoPage />
             )}
           </div>
         </section>
       </main>
     </MainTemplate>
+  );
+}
+
+function LikesShimmer() {
+  return (
+    <div className="h-screen">
+      <div className="animate-pulse flex flex-col space-y-4">
+        <Shimmer className="w-96 rounded-md h-64" />
+        <Shimmer className="h-6 rounded-md" />
+        <Shimmer className="h-4 w-20 rounded-md" />
+        <div className="flex space-x-2">
+          <Shimmer className="h-4 w-20 rounded-md" />
+          <Shimmer className="h-4 w-20 rounded-md" />
+          <Shimmer className="h-4 w-20 rounded-md" />
+          <Shimmer className="h-4 w-20 rounded-md" />
+        </div>
+        <Shimmer className="h-4 w-20 rounded-md" />
+      </div>
+    </div>
   );
 }

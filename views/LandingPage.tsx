@@ -7,7 +7,7 @@ export function LandingPage() {
   const link = getGoogleOAuthURL();
   const router = useRouter();
   return (
-    <main className="flex flex-col h-screen bg-youtubeRed items-center justify-center">
+    <main className="flex font-sans flex-col h-screen bg-youtubeRed items-center justify-center">
       <FaYoutube size="200px" className="text-5xl text-white" />
 
       <button

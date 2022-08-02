@@ -34,7 +34,10 @@ export function SidePanel(props: SidePanelProps) {
         className="flex w-full "
         click="https://github.com/maguireong/youtube-profile"
       >
-        <FaYoutube className="top-8 absolute left-12 hover:cursor-pointer hover:text-white ease-in-out duration-200 flex justify-center items-center text-4xl text-youtubeRed" />
+        <FaYoutube
+          size="40"
+          className="top-8 absolute left-11 hover:cursor-pointer hover:text-white ease-in-out duration-200 flex justify-center items-center text-4xl text-youtubeRed"
+        />
       </ClickArea>
       {tabs.map((tab) => (
         <ClickArea
@@ -56,7 +59,7 @@ export function SidePanel(props: SidePanelProps) {
         className="flex w-full "
         click="https://github.com/maguireong/youtube-profile"
       >
-        <BsGithub className="bottom-8 absolute left-12 hover:cursor-pointer hover:text-purple-300 ease-in-out duration-200 flex justify-center items-center text-4xl text-white" />
+        <BsGithub className="bottom-8 absolute left-11 hover:cursor-pointer hover:text-purple-300 ease-in-out duration-200 flex justify-center items-center text-4xl text-white" />
       </ClickArea>
     </div>
   );

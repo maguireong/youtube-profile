@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { ClickArea, MainTemplate, TopBar } from "../components";
+import { ClickArea, MainTemplate, Shimmer, TopBar } from "../components";
 import { PopularVideo } from "../model";
 import { useWindowWidth } from "../useWindowWidth";
+import { EmptyVideoPage } from "../views";
 import { getPopularVideoData } from "../youtube";
 
 export default function Explore() {
@@ -34,11 +35,12 @@ export default function Explore() {
           >
             Your Top Suggested Videos
           </h1>
-          <div className="flex flex-wrap gap-4 justify-center items-start">
-            {videos === "loading" ? (
-              <div className="flex flex-col br4-skeleton"></div>
-            ) : videos ? (
-              videos
+
+          {videos === "loading" ? (
+            <ExploreShimmer />
+          ) : videos ? (
+            <div className="flex flex-wrap gap-4 justify-center items-start">
+              {videos
                 .filter((video) =>
                   video.title.toLowerCase().includes(searchTerm.toLowerCase())
                 )
@@ -67,13 +69,30 @@ export default function Explore() {
                       </div>
                     </ClickArea>
                   );
-                })
-            ) : (
-              <div>No data found</div>
-            )}
-          </div>
+                })}
+            </div>
+          ) : (
+            <EmptyVideoPage />
+          )}
         </section>
       </main>
     </MainTemplate>
+  );
+}
+
+function ExploreShimmer() {
+  return (
+    <div className="h-screen flex gap-4 justify-center items-start">
+      <div className="animate-pulse flex flex-col space-y-4">
+        <Shimmer className="w-96 rounded-md h-64" />
+        <Shimmer className="h-6 rounded-md" />
+        <Shimmer className="h-4 w-20 rounded-md" />
+      </div>
+      <div className="animate-pulse flex flex-col space-y-4">
+        <Shimmer className="w-96 rounded-md h-64" />
+        <Shimmer className="h-6 rounded-md" />
+        <Shimmer className="h-4 w-20 rounded-md" />
+      </div>
+    </div>
   );
 }
