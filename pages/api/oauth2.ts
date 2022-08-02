@@ -3,12 +3,10 @@ import axios from "axios";
 import qs from "qs";
 import { setCookie } from "cookies-next";
 
-import {
-  GOOGLE_CLIENT_ID,
-  GOOGLE_REDIRECT_URI,
-  GOOGLE_CLIENT_SECRET,
-  BASE_URL,
-} from "../../configs";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+const BASE_URL = process.env.BASE_URL;
 
 type GoogleTokensResult = {
   access_token: string;
@@ -20,6 +18,7 @@ type GoogleTokensResult = {
 
 async function getGoogleOAuthTokens({ code }: { code: string }) {
   const url = "https://oauth2.googleapis.com/token";
+  console.log("getting tokens", GOOGLE_REDIRECT_URI);
 
   const values = {
     code,
@@ -52,6 +51,7 @@ export default async function handler(
   try {
     // get the requied token using the code
     const data = await getGoogleOAuthTokens({ code });
+    console.log("got tokens");
     const { id_token, refresh_token, access_token } = data;
 
     setCookie("idToken", id_token, { req, res, maxAge: 9000 });

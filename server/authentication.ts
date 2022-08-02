@@ -1,17 +1,15 @@
 import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
-import {
-  GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
-  GOOGLE_REDIRECT_URI,
-} from "../configs";
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
 
 export function getGoogleOAuthURL() {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
-
   const options = {
-    redirect_uri: GOOGLE_REDIRECT_URI,
-    client_id: GOOGLE_CLIENT_ID,
+    redirect_uri: GOOGLE_REDIRECT_URI ?? "",
+    client_id: GOOGLE_CLIENT_ID ?? "",
     access_type: "offline",
     response_type: "code",
     prompt: "consent",
