@@ -43,7 +43,9 @@ export default function Likes() {
           >
             {videos === "loading" ? (
               <LikesShimmer />
-            ) : videos ? (
+            ) : !videos || videos.length === 0 ? (
+              <EmptyVideoPage />
+            ) : (
               videos
                 .filter((video) =>
                   video.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -92,8 +94,6 @@ export default function Likes() {
                     </ClickArea>
                   );
                 })
-            ) : (
-              <EmptyVideoPage />
             )}
           </div>
         </section>

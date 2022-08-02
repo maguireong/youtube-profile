@@ -7,6 +7,7 @@ import { User, Video, Subscription } from "../model";
 import { getUser, logout } from "../server";
 import { useWindowWidth } from "../useWindowWidth";
 import { getVideoData, getSubscriptionData } from "../youtube";
+import { EmptyVideoPage } from "./EmptyVideoPage";
 
 export function ProfileView() {
   const [user, setUser] = useState<User>();
@@ -47,7 +48,11 @@ export function ProfileView() {
         )}
       >
         <UserProfile user={user} videos={videos} subs={subs} />
-        <BasicInfo videos={videos} subs={subs} />
+        {!videos || !subs || videos.length === 0 || subs.length === 0 ? (
+          <EmptyVideoPage />
+        ) : (
+          <BasicInfo videos={videos} subs={subs} />
+        )}
       </section>
     </MainTemplate>
   );

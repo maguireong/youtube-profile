@@ -54,7 +54,7 @@ export function MainTemplate({ children }: { children: ReactNode }) {
         />
       </Head>
 
-      <main className="-mb-8 font-sans bg-youtubeBlack">
+      <main className="-mb-8 font-sans min-h-screen bg-youtubeBlack">
         {!isMobileView && <SidePanel tabs={tabs} currentTab={currentTab} />}
         {showPageTransitionLoader ? (
           <div className="flex h-screen w-full items-center justify-center">
