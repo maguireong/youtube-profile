@@ -1,16 +1,11 @@
 import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
-import {
-  GOOGLE_CLIENT_ID,
-  GOOGLE_REDIRECT_URI,
-  GOOGLE_CLIENT_SECRET,
-} from "../configs";
 
 export function getGoogleOAuthURL() {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
   const options = {
-    redirect_uri: GOOGLE_REDIRECT_URI ?? "",
-    client_id: GOOGLE_CLIENT_ID ?? "",
+    redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI ?? "",
+    client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "",
     access_type: "offline",
     response_type: "code",
     prompt: "consent",
@@ -72,8 +67,8 @@ type RefreshTokens = {
 export async function refreshAccessToken() {
   const url = "https://www.googleapis.com/oauth2/v4/token";
   const params = {
-    client_id: GOOGLE_CLIENT_ID,
-    client_secret: GOOGLE_CLIENT_SECRET,
+    client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    client_secret: process.env.NEXT_PUBLIC_OOGLE_CLIENT_SECRET,
     refresh_token,
     grant_type: "refresh_token",
   };
